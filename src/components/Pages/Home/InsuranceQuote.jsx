@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import insuranceLady from "../../../assets/images/insurance-lady.avif"; // adjust path
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { showToast } from "../../Common/Toaster"; // adjust the path
 
 export default function InsuranceQuote() {
   const [formData, setFormData] = useState({
@@ -18,7 +19,6 @@ export default function InsuranceQuote() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus({ message: "Sending...", type: "info" });
 
     try {
       const response = await fetch("http://localhost/backend/sendMail.php", {
@@ -28,12 +28,34 @@ export default function InsuranceQuote() {
       });
 
       const data = await response.json();
-      setStatus({
-        message: data.message,
-        type: data.status === "success" ? "success" : "error",
-      });
+      const toastType = data.status === "success" ? "success" : "error";
+
+      setStatus({ message: data.message, type: toastType });
+
+      // Show toast
+      showToast(data.message, toastType, 4000);
+
+      if (data.status === "success") {
+        // Clear form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          insurance: "Car Insurance",
+        });
+      }
+
+      // Fade out status message after toast duration
+      setTimeout(() => {
+        setStatus((prev) => ({ ...prev, message: "" }));
+      }, 4000);
     } catch (error) {
       setStatus({ message: "Something went wrong.", type: "error" });
+      showToast("Something went wrong.", "error", 4000);
+
+      setTimeout(() => {
+        setStatus((prev) => ({ ...prev, message: "" }));
+      }, 4000);
     }
   };
 
@@ -123,15 +145,15 @@ export default function InsuranceQuote() {
             </span>
           </button>
 
-          {status.message && (
-            <p
-              className={`mt-2 text-sm ${
-                status.type === "success" ? "text-green-500" : "text-red-500"
-              }`}
-            >
-              {status.message}
-            </p>
-          )}
+          {/* Status message with reserved space to avoid jump */}
+          <p
+            className={`mt-2 text-sm h-6 transition-opacity duration-500 ${
+              status.type === "success" ? "text-green-500" : "text-red-500"
+            }`}
+            style={{ opacity: status.message ? 1 : 0 }}
+          >
+            {status.message || " "}
+          </p>
         </form>
       </div>
 
