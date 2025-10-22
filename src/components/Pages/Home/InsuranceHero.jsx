@@ -37,14 +37,13 @@ export default function InsuranceHero() {
 
             {/* Paragraph */}
             <p className="font-montserrat text-[15px] font-light leading-[22.5px] text-[#787878] mb-8 max-w-2xl">
-              At Privity, we are dedicated professionals who serve as true
-              advocates for insurance buyers. Our mission is to simplify the
-              insurance journey by offering transparent, efficient, and
-              personalized insurance solutions tailored to individual and
-              corporate needs. Whether you're an individual seeking the right
-              protection or a business looking for comprehensive group policies,
-              Privity ensures that your coverage is aligned with your goals —
-              with no hidden costs, full clarity, and continuous support.
+              At Privity, we believe insurance should feel simple, personal and
+              dependable. Our region-based broker network allows clients to get
+              local guidance with national standards of service — helping you fi
+              nd the right coverage faster, with someone who understands your
+              needs on the ground. From individual policies to corporate group
+              plans, we provide transparent, tailored solutions with long-term
+              support and absolutely no hidden charges.
             </p>
 
             {/* CTA Buttons */}

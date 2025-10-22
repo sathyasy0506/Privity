@@ -4,6 +4,7 @@ import premium from "../../../assets/icons/premium.png";
 import documentation from "../../../assets/icons/documentation.png";
 import support from "../../../assets/icons/support.png";
 import assistance from "../../../assets/icons/assistance.png";
+import Arrow from "../../../assets/images/Arrow.svg"; // Imported arrow SVG
 
 const features = [
   {
@@ -135,36 +136,20 @@ const FeaturesAndHowItWorks = () => {
           <div className="relative bg-[#EFE3E1] shadow-sm rounded-3xl p-4 flex-1">
             <h3 className="text-[60px] font-medium text-[#b43b27] mb-4">1</h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
-              Choose Desired Services
+              Choose Your Service
             </h4>
             <p className="text-gray-500 leading-relaxed text-[16px] md:text-base">
-              Reference site about Lorem Ipsum, giving information on its
-              origins, as well as a random Lipsum generator. No pressure - just
-              a conversation.
+              Select the insurance type that fits your needs — life, health,
+              motor, travel, or business coverage.
             </p>
 
             {/* Arrow */}
-            <div className="hidden z-10 md:block absolute top-1/4 -right-14 transform -translate-y-1/2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 100 50"
-                className="w-20 h-8 text-[#b43b27]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  d="M0 25 C30 10, 70 10, 100 25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M90 15 L100 25 L90 35"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <div className="hidden md:block absolute top-1/3 -right-20 transform -translate-y-2/3 w-32 h-16 rotate-12 z-50 rotate-45">
+              <img
+                src={Arrow}
+                alt="Arrow"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
@@ -172,49 +157,32 @@ const FeaturesAndHowItWorks = () => {
           <div className="relative bg-[#EFE3E1] shadow-sm rounded-3xl p-8 flex-1">
             <h3 className="text-[60px] font-medium text-[#b43b27] mb-4">2</h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
-              Choose Your Plan
+              Pick Your Plan
             </h4>
             <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-              Reference site about Lorem Ipsum, giving information on its
-              origins, as well as a random Lipsum generator. No pressure - just
-              a conversation.
+              Compare options and choose a plan tailored to your budget and
+              goals, with clear terms and no hidden costs.
             </p>
 
             {/* Arrow */}
-            <div className="hidden md:block absolute top-1/4 -right-14 transform -translate-y-1/2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 100 50"
-                className="w-20 h-8 text-[#b43b27]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  d="M0 25 C30 10, 70 10, 100 25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M90 15 L100 25 L90 35"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <div className="hidden md:block absolute top-1/3 -right-20 transform -translate-y-2/3 w-32 h-16 z-50 rotate-45">
+              <img
+                src={Arrow}
+                alt="Arrow"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
 
           {/* Step 3 */}
-          <div className="bg-[#EFE3E1] shadow-sm rounded-3xl p-8 flex-1">
+          <div className="bg-[#EFE3E1] shadow-sm rounded-3xl p-8 flex-1 relative">
             <h3 className="text-[60px] font-medium text-[#b43b27] mb-4">3</h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
-              Enjoy Secure Life
+              Enjoy a Secured Life
             </h4>
             <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-              Reference site about Lorem Ipsum, giving information on its
-              origins, as well as a random Lipsum generator. No pressure - just
-              a conversation.
+              Relax with complete peace of mind, knowing you and your loved ones
+              are protected.
             </p>
           </div>
         </div>
