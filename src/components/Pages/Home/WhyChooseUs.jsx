@@ -33,7 +33,13 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative flex flex-col md:flex-row items-start justify-between bg-[#341C1E] text-white px-6 md:px-20 py-16 font-montserrat gap-10 overflow-hidden">
+    <section
+      className="relative flex flex-col md:flex-row items-start justify-between bg-[#341C1E] text-white px-6 md:px-20 py-16 font-montserrat gap-10 overflow-hidden"
+      style={{
+        borderTopLeftRadius: "80px", 
+        borderTopRightRadius: "80px",
+      }}
+    >
       {/* Background circles */}
       <div className="absolute top-0 left-0 w-[40rem] h-[40rem] bg-[#392221] rounded-full -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
       <div className="absolute bottom-40 right-0 w-[40rem] h-[40rem] bg-[#3F2628] rounded-full translate-x-[25%] translate-y-[25%] pointer-events-none"></div>
