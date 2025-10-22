@@ -80,10 +80,10 @@ export default function TestimonialCarousel() {
         <div className="relative">
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors"
+            className="absolute left-14 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-black/30 flex items-center justify-center transition-colors"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-600" />
+            <ChevronLeft className="w-6 h-6 text-gray-100" />
           </button>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -147,10 +147,10 @@ export default function TestimonialCarousel() {
 
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-gray-200 shadow-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
+            className="absolute right-14 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-black/30 shadow-lg flex items-center justify-center transition-colors"
             aria-label="Next testimonial"
           >
-            <ChevronRight className="w-6 h-6 text-gray-600" />
+            <ChevronRight className="w-6 h-6 text-gray-100" />
           </button>
         </div>
 

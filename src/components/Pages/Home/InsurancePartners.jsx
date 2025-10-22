@@ -24,10 +24,8 @@ import logo21 from "../../../assets/images/insurance_company_logos_21.png";
 import logo22 from "../../../assets/images/insurance_company_logos_22.png";
 import logo23 from "../../../assets/images/insurance_company_logos_23.png";
 import logo24 from "../../../assets/images/insurance_company_logos_24.png";
-import logo25 from "../../../assets/images/insurance_company_logos_25.png";
 
 const InsurancePartners = () => {
-  // Put all logos into an array
   const logos = [
     logo1,
     logo2,
@@ -53,34 +51,30 @@ const InsurancePartners = () => {
     logo22,
     logo23,
     logo24,
-    logo25,
   ];
 
   return (
     <section className="w-full bg-white py-16 px-6 md:px-12 lg:px-24 text-center font-montserrat">
-      {/* Section Label */}
       <p className="text-red-600 mb-3 text-[17px] font-[500] tracking-wide flex items-center justify-center gap-2">
         <span className="w-2 h-2 bg-red-600 rounded-sm"></span>
         Partners
       </p>
 
-      {/* Heading */}
       <h2 className="text-[38px] font-[700] text-gray-900 mb-4">
         Our Insurance Partners
       </h2>
 
-      {/* Subheading */}
       <p className="text-[#787878] text-[16px] font-[500] max-w-xl mx-auto mb-12">
         We have strong alliances with India’s leading insurers to provide the
         widest coverage options available in the market.
       </p>
 
-      {/* Partner Logos Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-16 justify-items-center">
         {logos.map((logo, index) => (
           <div
             key={index}
-            className="w-[160px] h-[110px] bg-[#F1F2F2] border rounded-[30px] shadow-sm flex items-center justify-center"
+            className="w-[160px] h-[110px] bg-[#F1F2F2] border rounded-[30px] shadow-sm flex items-center justify-center
+                       transform transition-transform duration-200 hover:scale-110"
           >
             <img
               src={logo}
