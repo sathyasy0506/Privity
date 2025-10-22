@@ -34,20 +34,24 @@ const Counter = ({ target, duration, className }) => {
 const InfoCards = () => {
   const cards = [
     {
-      title: "Uncover your true potential",
-      description: "Powerful intentions for your personal development.",
+      title: "Integrity",
+      description:
+        "We operate with honesty and transparency, ensuring every recommendation is in your best interest.",
     },
     {
-      title: "Uncover your true potential",
-      description: "Powerful intentions for your personal development.",
+      title: "Trust",
+      description:
+        "Building lasting relationships through reliable service and consistent support.",
     },
     {
-      title: "Uncover your true potential",
-      description: "Powerful intentions for your personal development.",
+      title: "Expertise",
+      description:
+        "Our team of skilled professionals provides tailored insurance solutions backed by deep industry knowledge.",
     },
     {
-      title: "Uncover your true potential",
-      description: "Powerful intentions for your personal development.",
+      title: "Accessibility",
+      description:
+        "With a network of region-based brokers, we bring personalized guidance and support closer to you.",
     },
   ];
 

@@ -25,18 +25,18 @@ function Achievement() {
             <h3 className="text-[48px] font-[500] mb-2">99%</h3>
             <p className="text-[18px] font-[500] mb-3">Claim Settle</p>
             <p className="text-[14px] font-[300] opacity-90 leading-relaxed">
-              Donec vel tellus eget nisl aliquam tincidunt dui in dolor congue
-              malesuada.
+              Fast and hassle-free claim processing — we make sure your claims
+              are settled quickly and reliably.
             </p>
           </div>
 
           {/* 24/7 Contact Support Card */}
           <div className="bg-[#3D2F2F] text-white rounded-[40px] p-6 text-center shadow-md flex flex-col justify-center items-center flex-1">
             <h3 className="text-[48px] font-[500] mb-2">24/7</h3>
-            <p className="text-[18px] font-[500] mb-3">Contact Support</p>
+            <p className="text-[18px] font-[500] mb-3">Support</p>
             <p className="text-[14px] font-[300] opacity-90 leading-relaxed">
-              Donec vel tellus eget nisl aliquam tincidunt dui in dolor congue
-              malesuada.
+              Round-the-clock assistance for all your insurance needs, so help
+              is always just a call or click away.
             </p>
           </div>
         </div>

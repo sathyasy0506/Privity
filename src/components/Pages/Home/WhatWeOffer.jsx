@@ -21,64 +21,72 @@ import gadgetR from "../../../assets/icons/gadget_r.png";
 const cardsData = [
   {
     id: 1,
-    title: "Health Insurance",
-    description: "Welcome to Privity Insurance, we are here to make you smile!",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
-    icon: health,
-    iconHover: healthR,
-  },
-  {
-    id: 2,
     title: "Life Insurance",
-    description: "Providing comprehensive life insurance for your family.",
+    description:
+      "Protect your loved ones’ future with tailored life coverage that ensures financial security and peace of mind.",
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: life,
     iconHover: lifeR,
   },
   {
-    id: 3,
-    title: "Travel Insurance",
-    description: "Travel with peace of mind with our travel insurance plans.",
+    id: 2,
+    title: "Health Insurance",
+    description:
+      "Comprehensive medical coverage for individuals and families, keeping you financially secure against unexpected health expenses.",
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
-    icon: travel,
-    iconHover: travelR,
+    icon: health,
+    iconHover: healthR,
   },
   {
-    id: 4,
-    title: "Car Insurance",
-    description: "Protect your vehicle against accidents and theft.",
+    id: 3,
+    title: "Motor Insurance",
+    description:
+      "Complete protection for your vehicles against accidents, theft, and damages, ensuring worry-free driving.",
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: car,
     iconHover: carR,
   },
   {
+    id: 4,
+    title: "Travel Insurance",
+    description:
+      "Travel with confidence — coverage for medical emergencies, trip cancellations, and lost belongings, wherever you go.",
+    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    icon: travel,
+    iconHover: travelR,
+  },
+  {
     id: 5,
-    title: "Home Insurance",
-    description: "Secure your home and valuables with our comprehensive plans.",
+    title: "Fire Insurance",
+    description:
+      "Safeguard your property and assets from fire-related risks, minimizing losses and ensuring quick recovery.",
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: home,
     iconHover: homeR,
   },
   {
     id: 6,
-    title: "Pet Insurance",
-    description: "Ensure your pets get the best care when needed.",
+    title: "Marine Insurance",
+    description:
+      "Protection for cargo, ships, and goods in transit, providing security against loss or damage during transport.",
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: pet,
     iconHover: petR,
   },
   {
     id: 7,
-    title: "Business Insurance",
-    description: "Protect your business from unforeseen risks.",
+    title: "Liability Insurance",
+    description:
+      "Coverage against legal and financial responsibilities arising from accidents, damages, or professional errors.",
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: business,
     iconHover: businessR,
   },
   {
     id: 8,
-    title: "Gadget Insurance",
-    description: "Keep your gadgets safe with our insurance plans.",
+    title: "Corporate / Group Insurance",
+    description:
+      "Tailored insurance solutions for businesses, covering employees, assets, and operations with comprehensive group plans.",
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: gadget,
     iconHover: gadgetR,
