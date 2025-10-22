@@ -1,30 +1,40 @@
-import { FaRunning } from "react-icons/fa";
+import React from "react";
 
-// Data JSON at the top
+// Imported custom icons
+import network from "../../../assets/icons/network.png";
+import endtoend from "../../../assets/icons/endtoend.png";
+import hidden from "../../../assets/icons/hidden.png";
+import loyal from "../../../assets/icons/loyal.png";
+
+// Features data with icons
 const features = [
   {
     title: "A strong network of 300+ Point of Sales (POS) agent",
     desc: "Protect your biggest investment with our reliable, comprehensive, and trusted home insurance policies.",
+    icon: network,
   },
   {
     title: "Seamless end-to-end claims support",
     desc: "Get your designs done quickly without delays in 24 hours",
+    icon: endtoend,
   },
   {
     title:
       "Operate solely on statutory brokerage — absolutely no hidden charges",
     desc: "Get your designs done quickly without delays in 24 hours",
+    icon: hidden,
   },
   {
     title: "Thousands of happy and loyal clients across the state",
     desc: "Get your designs done quickly without delays in 24 hours",
+    icon: loyal,
   },
 ];
 
 export default function WhyChooseUs() {
   return (
     <section className="relative flex flex-col md:flex-row items-start justify-between bg-[#341C1E] text-white px-6 md:px-20 py-16 font-montserrat gap-10 overflow-hidden">
-      {/* Top-left and bottom-right circles */}
+      {/* Background circles */}
       <div className="absolute top-0 left-0 w-[40rem] h-[40rem] bg-[#392221] rounded-full -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
       <div className="absolute bottom-40 right-0 w-[40rem] h-[40rem] bg-[#3F2628] rounded-full translate-x-[25%] translate-y-[25%] pointer-events-none"></div>
 
@@ -54,11 +64,15 @@ export default function WhyChooseUs() {
         {features.map((item, i) => (
           <div
             key={i}
-            className="bg-[rgba(78,70,69,0.5)] backdrop-blur-[2px] rounded-[36px] p-6 flex items-center space-x-4 gap-4"
+            className="bg-[rgba(78,70,69,0.5)] backdrop-blur-[2px] rounded-[36px] p-6 flex items-center space-x-4 gap-4 hover:scale-[1.02] transition-transform duration-300"
           >
             {/* Icon */}
             <div className="flex items-center justify-center w-[80px] h-[80px] bg-[#c73c2f] rounded-xl flex-shrink-0">
-              <FaRunning className="text-white text-[25px]" />
+              <img
+                src={item.icon}
+                alt="feature icon"
+                className="w-[40px] h-[40px] object-contain"
+              />
             </div>
 
             {/* Divider */}

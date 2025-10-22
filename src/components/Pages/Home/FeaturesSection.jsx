@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Shield } from "lucide-react";
+
+import premium from "../../../assets/icons/premium.png";
+import documentation from "../../../assets/icons/documentation.png";
+import support from "../../../assets/icons/support.png";
+import assistance from "../../../assets/icons/assistance.png";
 
 const features = [
   {
@@ -7,28 +11,32 @@ const features = [
     description: "and set powerful intentions for your personal development.",
     image:
       "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+    icon: premium,
   },
   {
     title: "Seamless documentation",
     description: "and set powerful intentions for your personal development.",
     image:
       "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+    icon: documentation,
   },
   {
     title: "End-to-end claims support",
     description: "and set powerful intentions for your personal development.",
     image:
       "https://images.pexels.com/photos/3182774/pexels-photo-3182774.jpeg?auto=compress&cs=tinysrgb&w=800",
+    icon: support,
   },
   {
     title: "Personalized assistance",
     description: "and set powerful intentions for your personal development.",
     image:
       "https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=800",
+    icon: assistance,
   },
 ];
 
-const FeatureCard = ({ title, description }) => {
+const FeatureCard = ({ title, description, icon }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -37,17 +45,18 @@ const FeatureCard = ({ title, description }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div
-        className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors duration-300 ${
-          isHovered ? "bg-white" : "bg-red-600"
-        }`}
-      >
-        <Shield
-          className={`w-8 h-8 transition-colors duration-300 ${
-            isHovered ? "text-red-600" : "text-white"
+      {/* Icon */}
+      <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 bg-red-600">
+        <img
+          src={icon}
+          alt="icon"
+          className={`w-8 h-8 object-contain transition-transform duration-300 ${
+            isHovered ? "scale-110" : "scale-100"
           }`}
         />
       </div>
+
+      {/* Text */}
       <h3 className="text-xl font-semibold text-[#CD2200] mb-2">{title}</h3>
       <p className="text-gray-600 leading-relaxed">{description}</p>
     </div>
@@ -62,6 +71,7 @@ const FeaturesSection = () => {
         <FeatureCard
           title={features[0].title}
           description={features[0].description}
+          icon={features[0].icon}
         />
         <img
           src={features[0].image}
@@ -71,6 +81,7 @@ const FeaturesSection = () => {
         <FeatureCard
           title={features[1].title}
           description={features[1].description}
+          icon={features[1].icon}
         />
         <img
           src={features[1].image}
@@ -89,6 +100,7 @@ const FeaturesSection = () => {
         <FeatureCard
           title={features[2].title}
           description={features[2].description}
+          icon={features[2].icon}
         />
         <img
           src={features[3].image}
@@ -98,6 +110,7 @@ const FeaturesSection = () => {
         <FeatureCard
           title={features[3].title}
           description={features[3].description}
+          icon={features[3].icon}
         />
       </div>
     </section>
