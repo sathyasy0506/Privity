@@ -118,7 +118,7 @@ const FeaturesAndHowItWorks = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="w-full bg-[#E2D0CC] py-40 px-6 md:px-16 lg:px-24 text-center relative overflow-hidden rounded-t-3xl">
+      <section className="w-full z-10 bg-[#E2D0CC] py-40 px-6 md:px-16 lg:px-24 text-center relative overflow-hidden rounded-t-3xl">
         {/* Section Tag */}
         <div className="inline-block bg-white text-[#b43b27] text-xs font-semibold px-4 py-1 rounded-full mb-4">
           HOW IT WORKS
