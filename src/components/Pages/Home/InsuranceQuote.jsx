@@ -1,12 +1,45 @@
-import React from "react";
-import insuranceLady from "../../../assets/images/insurance-lady.avif"; // adjust path as needed
+import React, { useState } from "react";
+import insuranceLady from "../../../assets/images/insurance-lady.avif"; // adjust path
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function InsuranceQuote() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    insurance: "Car Insurance",
+  });
+  const [status, setStatus] = useState({ message: "", type: "" });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ message: "Sending...", type: "info" });
+
+    try {
+      const response = await fetch("http://localhost/backend/sendMail.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      setStatus({
+        message: data.message,
+        type: data.status === "success" ? "success" : "error",
+      });
+    } catch (error) {
+      setStatus({ message: "Something went wrong.", type: "error" });
+    }
+  };
+
   return (
     <section className="relative flex flex-col lg:flex-row items-center justify-between bg-[#341C1E] text-white px-8 lg:px-20 py-16 lg:py-24 overflow-hidden font-montserrat gap-20">
-      {/* Top-left and bottom-right solid circles */}
-      {/* Top-left and bottom-right solid circles */}
+      {/* Circles */}
       <div className="absolute top-44 left-0 w-[40rem] h-[40rem] bg-[#392221] rounded-full -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-[#3F2628] rounded-full translate-x-1/4 translate-y-1/4 pointer-events-none"></div>
 
@@ -27,31 +60,53 @@ export default function InsuranceQuote() {
           trusted insurance provider.
         </p>
 
-        <form className="mt-6 space-y-4 flex flex-col gap-2">
+        <form
+          className="mt-6 space-y-4 flex flex-col gap-2"
+          onSubmit={handleSubmit}
+        >
           <input
             type="text"
+            name="name"
             placeholder="Full Name"
+            value={formData.name}
+            onChange={handleChange}
             className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
           />
 
           <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="email"
+              name="email"
               placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
             />
             <input
               type="tel"
+              name="phone"
               placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
               className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
             />
           </div>
 
           <div className="relative w-full">
-            <select className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none appearance-none">
+            <select
+              name="insurance"
+              value={formData.insurance}
+              onChange={handleChange}
+              className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none appearance-none"
+            >
               <option>Car Insurance</option>
-              <option>Home Insurance</option>
               <option>Life Insurance</option>
+              <option>Health Insurance</option>
+              <option>Motor Insurance</option>
+              <option>Travel Insurance</option>
+              <option>Fire Insurance</option>
+              <option>Marine Insurance</option>
+              <option>Home Insurance</option>
             </select>
             <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-300 pointer-events-none" />
           </div>
@@ -67,6 +122,16 @@ export default function InsuranceQuote() {
               <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
             </span>
           </button>
+
+          {status.message && (
+            <p
+              className={`mt-2 text-sm ${
+                status.type === "success" ? "text-green-500" : "text-red-500"
+              }`}
+            >
+              {status.message}
+            </p>
+          )}
         </form>
       </div>
 
