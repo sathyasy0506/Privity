@@ -11,6 +11,7 @@ export default function InsuranceQuote() {
     insurance: "Car Insurance",
   });
   const [status, setStatus] = useState({ message: "", type: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false); // disable button while sending
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +20,7 @@ export default function InsuranceQuote() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // disable button
 
     try {
       const response = await fetch("http://localhost/backend/sendMail.php", {
@@ -31,12 +33,10 @@ export default function InsuranceQuote() {
       const toastType = data.status === "success" ? "success" : "error";
 
       setStatus({ message: data.message, type: toastType });
-
-      // Show toast
       showToast(data.message, toastType, 4000);
 
       if (data.status === "success") {
-        // Clear form
+        // clear form immediately after email sent
         setFormData({
           name: "",
           email: "",
@@ -45,7 +45,7 @@ export default function InsuranceQuote() {
         });
       }
 
-      // Fade out status message after toast duration
+      // fade out status message after 4s
       setTimeout(() => {
         setStatus((prev) => ({ ...prev, message: "" }));
       }, 4000);
@@ -56,6 +56,8 @@ export default function InsuranceQuote() {
       setTimeout(() => {
         setStatus((prev) => ({ ...prev, message: "" }));
       }, 4000);
+    } finally {
+      setIsSubmitting(false); // enable button again
     }
   };
 
@@ -135,17 +137,21 @@ export default function InsuranceQuote() {
 
           <button
             type="submit"
-            className="group relative inline-flex items-center bg-white text-[#BC2209] rounded-full pl-8 sm:pl-12 pr-4 py-3  w-56 sm:w-64 hover:bg-gray-100 transition-colors duration-300 overflow-hidden"
+            disabled={isSubmitting} // disable while sending
+            className={`group relative inline-flex items-center bg-white text-[#BC2209] rounded-full pl-8 sm:pl-12 pr-4 py-3 w-56 sm:w-64 transition-colors duration-300 overflow-hidden ${
+              isSubmitting
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-100"
+            }`}
           >
             <span className="transform transition-transform duration-500 group-hover:translate-x-2 sm:group-hover:translate-x-4 text-sm sm:text-base">
-              Submit Your Form
+              {isSubmitting ? "Sending..." : "Submit Your Form"}
             </span>
             <span className="absolute top-1/2 transform -translate-y-1/2 right-4 transition-transform duration-500 group-hover:translate-x-[-8.75rem] sm:group-hover:translate-x-[-11.75rem] w-6 h-6 sm:w-8 sm:h-8 bg-[#BC2207] rounded-full flex items-center justify-center">
               <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
             </span>
           </button>
 
-          {/* Status message with reserved space to avoid jump */}
           <p
             className={`mt-2 text-sm h-6 transition-opacity duration-500 ${
               status.type === "success" ? "text-green-500" : "text-red-500"
