@@ -73,7 +73,7 @@ const InsurancePartners = () => {
         {logos.map((logo, index) => (
           <div
             key={index}
-            className="w-[160px] h-[110px] bg-[#F1F2F2] border rounded-[30px] shadow-sm flex items-center justify-center
+            className="w-[160px] h-[110px]  flex items-center justify-center
                        transform transition-transform duration-200 hover:scale-110"
           >
             <img

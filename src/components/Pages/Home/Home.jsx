@@ -11,6 +11,7 @@ import FAQSection from "./FAQSection";
 import InsuranceQuote from "./InsuranceQuote";
 import WhyChooseUs from "./WhyChooseUs";
 import FeaturesAndHowItWorks from "./FeaturesAndHowItWorks";
+import TestimonialsAndWhyChooseUs from "./TestimonialsAndWhyChooseUs";
 
 const Home = () => {
   return (
@@ -32,8 +33,9 @@ const Home = () => {
       <div className="relative z-10">
         <AboutPrivity />
         <Achievement />
-        <TestimonialCarousel />
-        <WhyChooseUs />
+        {/* <TestimonialCarousel /> */}
+        {/* <WhyChooseUs /> */}
+        <TestimonialsAndWhyChooseUs />
         <InsuranceQuote />
         <TeamSection />
         <FAQSection />
