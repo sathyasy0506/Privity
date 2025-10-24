@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import insuranceLady from "../../../assets/images/insurance-lady.avif"; // adjust path
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { showToast } from "../../Common/Toaster"; // adjust the path
+import { API_URL } from "../../../config/api";
 
 export default function InsuranceQuote() {
   const [formData, setFormData] = useState({
@@ -20,23 +21,33 @@ export default function InsuranceQuote() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true); // disable button
+    setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost/backend/sendMail.php", {
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-      const toastType = data.status === "success" ? "success" : "error";
+      // Check if the server returned a successful HTTP response
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
 
+      // Attempt to parse JSON
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error("Invalid JSON response from server");
+      }
+
+      const toastType = data.status === "success" ? "success" : "error";
       setStatus({ message: data.message, type: toastType });
       showToast(data.message, toastType, 4000);
 
       if (data.status === "success") {
-        // clear form immediately after email sent
         setFormData({
           name: "",
           email: "",
@@ -44,20 +55,18 @@ export default function InsuranceQuote() {
           insurance: "Car Insurance",
         });
       }
-
-      // fade out status message after 4s
-      setTimeout(() => {
-        setStatus((prev) => ({ ...prev, message: "" }));
-      }, 4000);
     } catch (error) {
-      setStatus({ message: "Something went wrong.", type: "error" });
-      showToast("Something went wrong.", "error", 4000);
-
-      setTimeout(() => {
-        setStatus((prev) => ({ ...prev, message: "" }));
-      }, 4000);
+      // Handle network errors, CORS issues, or JSON parse errors
+      console.error("Form submission error:", error);
+      setStatus({
+        message: error.message || "Something went wrong.",
+        type: "error",
+      });
+      showToast(error.message || "Something went wrong.", "error", 4000);
     } finally {
-      setIsSubmitting(false); // enable button again
+      // Clear status after 4 seconds
+      setTimeout(() => setStatus((prev) => ({ ...prev, message: "" })), 4000);
+      setIsSubmitting(false);
     }
   };
 
