@@ -39,11 +39,11 @@ export default function InsuranceHero() {
             <p className="font-montserrat text-[15px] font-light leading-[22.5px] text-[#787878] mb-8 max-w-2xl">
               At Privity, we believe insurance should feel simple, personal and
               dependable. Our region-based broker network allows clients to get
-              local guidance with national standards of service — helping you fi
-              nd the right coverage faster, with someone who understands your
-              needs on the ground. From individual policies to corporate group
-              plans, we provide transparent, tailored solutions with long-term
-              support and absolutely no hidden charges.
+              local guidance with national standards of service — find the
+              right coverage faster, with someone who understands your needs on
+              the ground. From individual policies to corporate group plans, we
+              provide transparent, tailored solutions with long-term support and
+              absolutely no hidden charges.
             </p>
 
             {/* CTA Buttons */}
