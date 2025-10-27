@@ -18,6 +18,22 @@ export default function TeamSection() {
       imageUrl:
         "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=600",
     },
+    {
+      name: "Daniel Carter",
+      role: "CTO of Privity",
+      description:
+        "Daniel leads the tech innovations that make Privity’s digital tools seamless, secure, and impactful.",
+      imageUrl:
+        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
+    },
+    {
+      name: "Sophia Brown",
+      role: "COO of Privity",
+      description:
+        "Sophia ensures operational excellence and inspires the team to deliver transformative client experiences.",
+      imageUrl:
+        "https://images.pexels.com/photos/3760856/pexels-photo-3760856.jpeg?auto=compress&cs=tinysrgb&w=600",
+    },
   ];
 
   return (
@@ -27,11 +43,11 @@ export default function TeamSection() {
           Meet <span className="text-red-600">Our Team</span>
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 place-items-center">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-white rounded-3xl p-8 shadow-lg flex flex-col md:flex-row items-center gap-6"
+              className="bg-white rounded-3xl p-8 shadow-lg flex flex-col md:flex-row items-center gap-6 w-full max-w-3xl"
             >
               <div className="flex-1 text-left">
                 <h2 className="text-[30px] font-[500] text-gray-800 mb-2">
