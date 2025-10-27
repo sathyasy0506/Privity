@@ -90,6 +90,14 @@ const cardsData = [
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: gadget,
     iconHover: gadgetR,
+  },{
+    id: 9,
+    title: "Corporate / Group Insurance",
+    description:
+      "Tailored insurance solutions for businesses, covering employees, assets, and operations with comprehensive group plans.",
+    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    icon: gadget,
+    iconHover: gadgetR,
   },
 ];
 
