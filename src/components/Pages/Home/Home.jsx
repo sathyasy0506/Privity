@@ -12,13 +12,15 @@ import InsuranceQuote from "./InsuranceQuote";
 import WhyChooseUs from "./WhyChooseUs";
 import FeaturesAndHowItWorks from "./FeaturesAndHowItWorks";
 import TestimonialsAndWhyChooseUs from "./TestimonialsAndWhyChooseUs";
+import HeroSection from "./HeroSection";
 
 const Home = () => {
   return (
     <main className="relative font-montserrat">
       {/* Top sections */}
       <div className="overflow-x-hidden">
-        <InsuranceHero />
+        <HeroSection />
+        {/* <InsuranceHero /> */}
         <StatsSection />
         <WhatWeOffer />
         <InsurancePartners />
