@@ -1,156 +1,187 @@
-import React from "react";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Facebook,
-  Instagram,
-  Twitter,
-} from "lucide-react";
+import React, { useState } from "react";
+import insuranceLady from "../../../assets/images/insurance-lady.avif"; // adjust path
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { showToast } from "../../Common/Toaster"; // adjust the path
+import { API } from "../../../config/api";
 
-const Contact = () => {
+export default function InsuranceQuote() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    insurance: "Car Insurance",
+  });
+  const [status, setStatus] = useState({ message: "", type: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false); // disable button while sending
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+    const response = await fetch(API.sendMail, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+      // Check if the server returned a successful HTTP response
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+
+      // Attempt to parse JSON
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        throw new Error("Invalid JSON response from server");
+      }
+
+      const toastType = data.status === "success" ? "success" : "error";
+      setStatus({ message: data.message, type: toastType });
+      showToast(data.message, toastType, 4000);
+
+      if (data.status === "success") {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          insurance: "Car Insurance",
+        });
+      }
+    } catch (error) {
+      // Handle network errors, CORS issues, or JSON parse errors
+      console.error("Form submission error:", error);
+      setStatus({
+        message: error.message || "Something went wrong.",
+        type: "error",
+      });
+      showToast(error.message || "Something went wrong.", "error", 4000);
+    } finally {
+      // Clear status after 4 seconds
+      setTimeout(() => setStatus((prev) => ({ ...prev, message: "" })), 4000);
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen relative">
-      {/* Banner Section */}
-      <div className="relative h-[300px] md:h-[400px] w-full">
-        <img
-          src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1950&q=80"
-          alt="Contact Banner"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[#FF2703]/70"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-wide mb-2">
-            Contact Us
-          </h1>
-          <p className="text-white text-lg">
-            <span className="opacity-90">Home</span> / Contact Us
-          </p>
-        </div>
-      </div>
+    <section className="relative flex flex-col lg:flex-row items-center justify-between bg-[#341C1E] text-white px-8 lg:px-20 py-16 lg:py-24 overflow-hidden font-montserrat gap-20">
+      {/* Circles */}
+      <div className="absolute top-44 left-0 w-[40rem] h-[40rem] bg-[#392221] rounded-full -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-[#3F2628] rounded-full translate-x-1/4 translate-y-1/4 pointer-events-none"></div>
 
-      {/* Contact Section */}
-      <div className="relative z-10">
-        <div className="max-w-6xl mx-auto px-6 pb-20">
-          <div className="bg-white rounded-3xl shadow-2xl p-12 grid md:grid-cols-2 gap-12 -mt-20 relative z-20">
-            {/* Left Section - Contact Info */}
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Get in touch</h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                Connect with our experienced insurance advisors for reliable
-                solutions, professional service, and peace of mind.
-              </p>
+      {/* Left Content */}
+      <div className="w-full lg:w-1/2 space-y-6 relative z-10">
+        <p className="text-[16px] text-gray-300 font-[400] leading-[24px]">
+          ● Contact us
+        </p>
 
-              <div className="space-y-6 mb-12">
-                <div className="flex items-start gap-4">
-                  <div className="bg-[#FF2703] rounded-full p-3 flex-shrink-0">
-                    <Phone className="text-white" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">Call Us</h3>
-                    <p className="text-gray-600">+91 98765 43210</p>
-                  </div>
-                </div>
+        <h2 className="text-[45px] font-[500] leading-[60.75px]">
+          Get an insurance
+          <br />
+          quote to get started!
+        </h2>
 
-                <div className="flex items-start gap-4">
-                  <div className="bg-[#FF2703] rounded-full p-3 flex-shrink-0">
-                    <Mail className="text-white" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">Email</h3>
-                    <p className="text-gray-600">info@privityinsurance.com</p>
-                  </div>
-                </div>
+        <p className="text-[16px] font-[400] leading-[28.8px] text-gray-300 max-w-md">
+          Contact us today to experience the difference of working with a
+          trusted insurance provider.
+        </p>
 
-                <div className="flex items-start gap-4">
-                  <div className="bg-[#FF2703] rounded-full p-3 flex-shrink-0">
-                    <MapPin className="text-white" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">Visit Us</h3>
-                    <p className="text-gray-600">
-                      68/1878 Ist floor JMV Towers, Market road north end,
-                      Kombara, Ernakulam, Kerala, India, 682018
-                    </p>
-                  </div>
-                </div>
-              </div>
+        <form
+          className="mt-6 space-y-4 flex flex-col gap-2"
+          onSubmit={handleSubmit}
+        >
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
+          />
 
-              <div>
-                <h3 className="font-bold text-xl mb-4">
-                  Follow our social media
-                </h3>
-                <div className="flex gap-3">
-                  <button className="bg-[#FF2703] hover:bg-[#FF2703] transition-colors rounded-full p-3">
-                    <Facebook className="text-white" size={20} />
-                  </button>
-                  <button className="bg-[#FF2703] hover:bg-[#FF2703] transition-colors rounded-full p-3">
-                    <Instagram className="text-white" size={20} />
-                  </button>
-                  <button className="bg-[#FF2703] hover:bg-[#FF2703] transition-colors rounded-full p-3">
-                    <Twitter className="text-white" size={20} />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Section - Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold mb-8">Send us a message</h2>
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 border-2 border-[#FF2703] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF2703]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    className="w-full px-4 py-3 border-2 border-[#FF2703] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF2703]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 border-2 border-[#FF2703] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF2703]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Message Here
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-3 border-2 border-[#FF2703] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF2703] resize-none"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-[#FF2703] hover:bg-[#FF2703] transition-colors text-white font-semibold py-4 rounded-lg text-lg"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
+            />
           </div>
+
+          <div className="relative w-full">
+            <select
+              name="insurance"
+              value={formData.insurance}
+              onChange={handleChange}
+              className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none appearance-none"
+            >
+              <option>Car Insurance</option>
+              <option>Life Insurance</option>
+              <option>Health Insurance</option>
+              <option>Motor Insurance</option>
+              <option>Travel Insurance</option>
+              <option>Fire Insurance</option>
+              <option>Marine Insurance</option>
+              <option>Home Insurance</option>
+            </select>
+            <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-300 pointer-events-none" />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting} // disable while sending
+            className={`group relative inline-flex items-center bg-white text-[#BC2209] rounded-full pl-8 sm:pl-12 pr-4 py-3 w-56 sm:w-64 transition-colors duration-300 overflow-hidden ${
+              isSubmitting
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-100"
+            }`}
+          >
+            <span className="transform transition-transform duration-500 group-hover:translate-x-2 sm:group-hover:translate-x-4 text-sm sm:text-base">
+              {isSubmitting ? "Sending..." : "Submit Your Form"}
+            </span>
+            <span className="absolute top-1/2 transform -translate-y-1/2 right-4 transition-transform duration-500 group-hover:translate-x-[-8.75rem] sm:group-hover:translate-x-[-11.75rem] w-6 h-6 sm:w-8 sm:h-8 bg-[#BC2207] rounded-full flex items-center justify-center">
+              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+            </span>
+          </button>
+
+          <p
+            className={`mt-2 text-sm h-6 transition-opacity duration-500 ${
+              status.type === "success" ? "text-green-500" : "text-red-500"
+            }`}
+            style={{ opacity: status.message ? 1 : 0 }}
+          >
+            {status.message || " "}
+          </p>
+        </form>
+      </div>
+
+      {/* Right Image */}
+      <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center relative z-10">
+        <div className="relative">
+          <img
+            src={insuranceLady}
+            alt="Insurance representative"
+            className="relative z-10 rounded-full object-contain max-h-[850px]"
+          />
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default Contact;
+}
