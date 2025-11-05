@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import insuranceLady from "../../../assets/images/insurance-lady.avif"; // adjust path
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { showToast } from "../../Common/Toaster"; // adjust the path
-import { API_URL } from "../../../config/api";
+// import { API_URL } from "../../../config/api";
+import { API } from "../../../config/api";
 
 export default function InsuranceQuote() {
   const [formData, setFormData] = useState({
@@ -24,25 +25,18 @@ export default function InsuranceQuote() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(API.sendMail, {
+        // ✅ FIXED
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      // Check if the server returned a successful HTTP response
       if (!response.ok) {
         throw new Error(`Server responded with status ${response.status}`);
       }
 
-      // Attempt to parse JSON
-      let data;
-      try {
-        data = await response.json();
-      } catch {
-        throw new Error("Invalid JSON response from server");
-      }
-
+      const data = await response.json();
       const toastType = data.status === "success" ? "success" : "error";
       setStatus({ message: data.message, type: toastType });
       showToast(data.message, toastType, 4000);
@@ -56,7 +50,6 @@ export default function InsuranceQuote() {
         });
       }
     } catch (error) {
-      // Handle network errors, CORS issues, or JSON parse errors
       console.error("Form submission error:", error);
       setStatus({
         message: error.message || "Something went wrong.",
@@ -64,7 +57,6 @@ export default function InsuranceQuote() {
       });
       showToast(error.message || "Something went wrong.", "error", 4000);
     } finally {
-      // Clear status after 4 seconds
       setTimeout(() => setStatus((prev) => ({ ...prev, message: "" })), 4000);
       setIsSubmitting(false);
     }
