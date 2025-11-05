@@ -84,7 +84,10 @@ const InfoCards = () => {
 
 const AboutPrivity = () => {
   return (
-    <section className="w-full bg-white py-16 px-8 md:px-20 lg:px-28 font-montserrat">
+    <section
+      id="about"
+      className="w-full bg-white py-16 px-8 md:px-20 lg:px-28 font-montserrat"
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Content */}
         <div className="lg:col-span-7">

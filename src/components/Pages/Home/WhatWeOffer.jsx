@@ -90,7 +90,8 @@ const cardsData = [
     img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: gadget,
     iconHover: gadgetR,
-  },{
+  },
+  {
     id: 9,
     title: "Corporate / Group Insurance",
     description:
@@ -108,7 +109,7 @@ const WhatWeOffer = () => {
   const displayedCards = showAll ? cardsData : cardsData.slice(0, 6);
 
   return (
-    <div className="min-h-screen py-16 px-4">
+    <div id="what-we-offer" className="min-h-screen py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -121,6 +122,7 @@ const WhatWeOffer = () => {
               What we offer
             </h3>
           </div>
+
           <h1
             className="font-montserrat text-[#302D2D] mb-6"
             style={{ fontSize: "38px", fontWeight: 500, lineHeight: "49.4px" }}
