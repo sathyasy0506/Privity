@@ -1,13 +1,6 @@
-// src/config/api.js
+export const BASE_URL = "http://localhost/backend/";
 
-// Automatically pick base URL depending on environment
-const BASE_URL =
-  import.meta.env.MODE === "development"
-    ? "http://localhost/backend/"
-    : "https://privity.in/backend/";
-
-export const API = {
-  sendMail: `${BASE_URL}sendMail.php`,
-  contact: `${BASE_URL}contact.php`,
-  // add more here if needed
+export const ENDPOINTS = {
+  CONTACT: () => `${BASE_URL}contact.php`,
+  SEND_MAIL: () => `${BASE_URL}sendMail.php`,
 };

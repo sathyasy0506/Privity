@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import insuranceLady from "../../../assets/images/insurance-lady.avif"; // adjust path
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { showToast } from "../../Common/Toaster"; // adjust the path
-// import { API_URL } from "../../../config/api";
-import { API } from "../../../config/api";
+import { showToast } from "../../Common/Toaster"; // adjust path
+import { ENDPOINTS } from "../../../config/api"; // adjust path
 
 export default function InsuranceQuote() {
   const [formData, setFormData] = useState({
@@ -12,8 +11,9 @@ export default function InsuranceQuote() {
     phone: "",
     insurance: "Car Insurance",
   });
+
   const [status, setStatus] = useState({ message: "", type: "" });
-  const [isSubmitting, setIsSubmitting] = useState(false); // disable button while sending
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,48 +23,52 @@ export default function InsuranceQuote() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setStatus({ message: "", type: "" });
 
     try {
-      const response = await fetch(API.sendMail, {
-        // ✅ FIXED
+      const res = await fetch(ENDPOINTS.SEND_MAIL(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        credentials: "include",
       });
 
-      if (!response.ok) {
-        throw new Error(`Server responded with status ${response.status}`);
-      }
-
-      const data = await response.json();
-      const toastType = data.status === "success" ? "success" : "error";
-      setStatus({ message: data.message, type: toastType });
-      showToast(data.message, toastType, 4000);
+      const data = await res.json();
 
       if (data.status === "success") {
+        setStatus({ message: "Form submitted successfully!", type: "success" });
+        showToast("Form submitted successfully!", "success", 4000);
         setFormData({
           name: "",
           email: "",
           phone: "",
           insurance: "Car Insurance",
         });
+      } else {
+        setStatus({
+          message: data.message || "Submission failed!",
+          type: "error",
+        });
+        showToast(data.message || "Submission failed!", "error", 4000);
       }
-    } catch (error) {
-      console.error("Form submission error:", error);
+    } catch (err) {
+      console.error(err);
       setStatus({
-        message: error.message || "Something went wrong.",
+        message: "Network error. Please try again later.",
         type: "error",
       });
-      showToast(error.message || "Something went wrong.", "error", 4000);
+      showToast("Network error. Please try again later.", "error", 4000);
     } finally {
-      setTimeout(() => setStatus((prev) => ({ ...prev, message: "" })), 4000);
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section className="relative flex flex-col lg:flex-row items-center justify-between bg-[#341C1E] text-white px-8 lg:px-20 py-16 lg:py-24 overflow-hidden font-montserrat gap-20">
-      {/* Circles */}
+    <section
+      id="quote"
+      className="relative flex flex-col lg:flex-row items-center justify-between bg-[#341C1E] text-white px-8 lg:px-20 py-16 lg:py-24 overflow-hidden font-montserrat gap-20"
+    >
+      {/* Background Circles */}
       <div className="absolute top-44 left-0 w-[40rem] h-[40rem] bg-[#392221] rounded-full -translate-x-1/4 -translate-y-1/4 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-[#3F2628] rounded-full translate-x-1/4 translate-y-1/4 pointer-events-none"></div>
 
@@ -73,13 +77,9 @@ export default function InsuranceQuote() {
         <p className="text-[16px] text-gray-300 font-[400] leading-[24px]">
           ● Contact us
         </p>
-
         <h2 className="text-[45px] font-[500] leading-[60.75px]">
-          Get an insurance
-          <br />
-          quote to get started!
+          Get an insurance <br /> quote to get started!
         </h2>
-
         <p className="text-[16px] font-[400] leading-[28.8px] text-gray-300 max-w-md">
           Contact us today to experience the difference of working with a
           trusted insurance provider.
@@ -96,6 +96,7 @@ export default function InsuranceQuote() {
             value={formData.name}
             onChange={handleChange}
             className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
+            required
           />
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -106,6 +107,7 @@ export default function InsuranceQuote() {
               value={formData.email}
               onChange={handleChange}
               className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
+              required
             />
             <input
               type="tel"
@@ -114,6 +116,7 @@ export default function InsuranceQuote() {
               value={formData.phone}
               onChange={handleChange}
               className="w-full bg-[rgba(74,42,38,0.5)] border border-[#705e5f] focus:border-[#ff4d2a] text-white placeholder-gray-300 rounded-xl px-4 py-3 outline-none"
+              required
             />
           </div>
 
@@ -138,7 +141,7 @@ export default function InsuranceQuote() {
 
           <button
             type="submit"
-            disabled={isSubmitting} // disable while sending
+            disabled={isSubmitting}
             className={`group relative inline-flex items-center bg-white text-[#BC2209] rounded-full pl-8 sm:pl-12 pr-4 py-3 w-56 sm:w-64 transition-colors duration-300 overflow-hidden ${
               isSubmitting
                 ? "opacity-50 cursor-not-allowed"

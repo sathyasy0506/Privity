@@ -87,7 +87,17 @@ const Header = () => {
 
           {/* Get Started Button */}
           <div className="hidden md:block">
-            <button className="w-full px-5 py-2 bg-red-600 text-white text-lg font-normal rounded-full border-[1px] border-red-600 transition-all duration-300 ease-in-out transform hover:bg-white hover:text-red-600 hover:opacity-90 font-montserrat">
+            <button
+              onClick={() => {
+                if (location.pathname === "/") {
+                  handleScrollToSection("quote");
+                } else {
+                  navigate("/");
+                  setTimeout(() => handleScrollToSection("quote"), 600);
+                }
+              }}
+              className="w-full px-5 py-2 bg-red-600 text-white text-lg font-normal rounded-full border-[1px] border-red-600 transition-all duration-300 ease-in-out transform hover:bg-white hover:text-red-600 hover:opacity-90 font-montserrat"
+            >
               Get Started
             </button>
           </div>
