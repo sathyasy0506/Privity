@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -7,7 +8,8 @@ import {
   Instagram,
   Twitter,
 } from "lucide-react";
-import { API } from "../../../config/api";
+import banner from "../../../assets/images/c_banner.jpg";
+import { ENDPOINTS } from "../../../config/api";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,8 +18,10 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
   const [loading, setLoading] = useState(false);
   const [responseMsg, setResponseMsg] = useState("");
+  const [responseType, setResponseType] = useState("success"); // success or error
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,21 +31,32 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     setResponseMsg("");
+    setResponseType("success");
 
     try {
-      const res = await fetch(API.contact, {
+      const res = await fetch(ENDPOINTS.CONTACT(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        credentials: "include",
       });
 
-      const result = await res.json();
-      setResponseMsg(result.message);
-    } catch (error) {
-      setResponseMsg("Something went wrong. Please try again later.");
+      const data = await res.json();
+
+      if (data.status === "success") {
+        setResponseType("success");
+        setResponseMsg("Your message has been sent successfully!");
+        setFormData({ name: "", phone: "", email: "", message: "" });
+      } else {
+        setResponseType("error");
+        setResponseMsg(data.message || "Something went wrong!");
+      }
+    } catch (err) {
+      setResponseType("error");
+      setResponseMsg("Network error. Please try again later.");
+      console.error(err);
     } finally {
       setLoading(false);
-      setFormData({ name: "", phone: "", email: "", message: "" });
     }
   };
 
@@ -50,7 +65,7 @@ const Contact = () => {
       {/* Banner */}
       <div className="relative h-[300px] md:h-[400px] w-full">
         <img
-          src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1950&q=80"
+          src={banner}
           alt="Contact Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -60,7 +75,10 @@ const Contact = () => {
             Contact Us
           </h1>
           <p className="text-white text-lg">
-            <span className="opacity-90">Home</span> / Contact Us
+            <Link to="/" className="opacity-90 hover:opacity-100 transition">
+              Home
+            </Link>
+            / <span className="font-semibold">Contact Us</span>
           </p>
         </div>
       </div>
@@ -201,7 +219,7 @@ const Contact = () => {
                 {responseMsg && (
                   <p
                     className={`text-center mt-3 ${
-                      responseMsg.toLowerCase().includes("success")
+                      responseType === "success"
                         ? "text-green-600"
                         : "text-red-600"
                     }`}
