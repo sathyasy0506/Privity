@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -7,6 +8,7 @@ import {
   Instagram,
   Twitter,
 } from "lucide-react";
+import banner from "../../../assets/images/c_banner.jpg";
 import { ENDPOINTS } from "../../../config/api";
 
 const Contact = () => {
@@ -63,7 +65,7 @@ const Contact = () => {
       {/* Banner */}
       <div className="relative h-[300px] md:h-[400px] w-full">
         <img
-          src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1950&q=80"
+          src={banner}
           alt="Contact Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -73,7 +75,10 @@ const Contact = () => {
             Contact Us
           </h1>
           <p className="text-white text-lg">
-            <span className="opacity-90">Home</span> / Contact Us
+            <Link to="/" className="opacity-90 hover:opacity-100 transition">
+              Home
+            </Link>
+            / <span className="font-semibold">Contact Us</span>
           </p>
         </div>
       </div>
