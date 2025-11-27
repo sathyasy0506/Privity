@@ -6,7 +6,7 @@ import float from "../../../assets/images/hero_float.avif"; // overlay tag image
 export default function InsuranceHero() {
   return (
     <section className="min-h-screen bg-white px-8 pt-16 py-12 lg:px-16">
-      <div className="max-w-7xl mx-auto p-[12px]">
+      <div className="max-w-[1320px] mx-auto p-[12px]">
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column */}
@@ -48,10 +48,10 @@ export default function InsuranceHero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 ml-2">
-              <button className="px-8 py-2 bg-red-600 hover:bg-red-700 text-white text-lg font-normal rounded-full transition-colors font-poppins">
+              <button className="px-8 py-2 bg-[--color-primary] hover:bg-red-700 text-white text-lg font-normal rounded-full transition-colors font-poppins">
                 Book Now
               </button>
-              <button className="px-8 py-2 bg-white hover:bg-gray-50 text-red-600 text-lg font-normal rounded-full border-[1px] border-red-600 transition-colors font-poppins">
+              <button className="px-8 py-2 bg-white hover:bg-gray-50 text-[--color-primary] text-lg font-normal rounded-full border-[1px] border-[--color-primary] transition-colors font-poppins">
                 Learn more
               </button>
             </div>

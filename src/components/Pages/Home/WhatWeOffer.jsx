@@ -18,13 +18,22 @@ import businessR from "../../../assets/icons/business_r.png";
 import gadget from "../../../assets/icons/gadget.png";
 import gadgetR from "../../../assets/icons/gadget_r.png";
 
+import lifeImage from "../../../assets/images/life.png";
+import healthImage from "../../../assets/images/health.png";
+import motorImage from "../../../assets/images/motor.png";
+import travelImage from "../../../assets/images/travel.png";
+import fireImage from "../../../assets/images/fire.png";
+import marineImage from "../../../assets/images/marine.png";
+import liabilityImage from "../../../assets/images/liability.png";
+import corporateImage from "../../../assets/images/corp.png";
+
 const cardsData = [
   {
     id: 1,
     title: "Life Insurance",
     description:
       "Protect your loved ones’ future with tailored life coverage that ensures financial security and peace of mind.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: lifeImage,
     icon: life,
     iconHover: lifeR,
   },
@@ -33,7 +42,7 @@ const cardsData = [
     title: "Health Insurance",
     description:
       "Comprehensive medical coverage for individuals and families, keeping you financially secure against unexpected health expenses.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: healthImage,
     icon: health,
     iconHover: healthR,
   },
@@ -42,7 +51,7 @@ const cardsData = [
     title: "Motor Insurance",
     description:
       "Complete protection for your vehicles against accidents, theft, and damages, ensuring worry-free driving.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: motorImage,
     icon: car,
     iconHover: carR,
   },
@@ -51,7 +60,7 @@ const cardsData = [
     title: "Travel Insurance",
     description:
       "Travel with confidence — coverage for medical emergencies, trip cancellations, and lost belongings, wherever you go.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: travelImage,
     icon: travel,
     iconHover: travelR,
   },
@@ -60,7 +69,7 @@ const cardsData = [
     title: "Fire Insurance",
     description:
       "Safeguard your property and assets from fire-related risks, minimizing losses and ensuring quick recovery.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: fireImage,
     icon: home,
     iconHover: homeR,
   },
@@ -69,7 +78,7 @@ const cardsData = [
     title: "Marine Insurance",
     description:
       "Protection for cargo, ships, and goods in transit, providing security against loss or damage during transport.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: marineImage,
     icon: pet,
     iconHover: petR,
   },
@@ -78,7 +87,7 @@ const cardsData = [
     title: "Liability Insurance",
     description:
       "Coverage against legal and financial responsibilities arising from accidents, damages, or professional errors.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: liabilityImage,
     icon: business,
     iconHover: businessR,
   },
@@ -87,16 +96,7 @@ const cardsData = [
     title: "Corporate / Group Insurance",
     description:
       "Tailored insurance solutions for businesses, covering employees, assets, and operations with comprehensive group plans.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
-    icon: gadget,
-    iconHover: gadgetR,
-  },
-  {
-    id: 9,
-    title: "Corporate / Group Insurance",
-    description:
-      "Tailored insurance solutions for businesses, covering employees, assets, and operations with comprehensive group plans.",
-    img: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
+    img: corporateImage,
     icon: gadget,
     iconHover: gadgetR,
   },
@@ -109,27 +109,25 @@ const WhatWeOffer = () => {
   const displayedCards = showAll ? cardsData : cardsData.slice(0, 6);
 
   return (
-    <div id="what-we-offer" className="min-h-screen py-16 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div id="what-we-offer" className="min-h-screen  px-6">
+      <div className="max-w-[1320px] mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-2 h-2 bg-red-600"></div>
+            <div className="w-2 h-2 bg-[var(--color-primary)]"></div>
             <h3
-              className="text-red-600 text-lg font-montserrat"
+              className="text-[var(--color-primary)] text-lg font-montserrat"
               style={{ fontWeight: 400 }}
             >
               What we offer
             </h3>
           </div>
 
-          <h1
-            className="font-montserrat text-[#302D2D] mb-6"
-            style={{ fontSize: "38px", fontWeight: 500, lineHeight: "49.4px" }}
-          >
-            Your One-Stop Insurance{" "}
-            <span className="text-gray-400">Solution</span>
+          <h1 className="font-montserrat mb-6 text-[#302D2D] text-3xl sm:text-[34px] md:text-5xl font-medium leading-tight">
+            Your One-Stop Insurance
+            <span className="text-gray-400"> Solution</span>
           </h1>
+
           <p
             className="font-montserrat text-[#838181] max-w-2xl mx-auto"
             style={{ fontSize: "16px", fontWeight: 400, lineHeight: "24px" }}
@@ -158,7 +156,7 @@ const WhatWeOffer = () => {
                 {/* Background Image Overlay */}
                 <div
                   className={`absolute inset-0 transform transition-all duration-500 ${
-                    isHovered ? "scale-100 opacity-30" : "scale-110 opacity-0"
+                    isHovered ? "scale-100 opacity-70" : "scale-110 opacity-0"
                   }`}
                 >
                   <img
@@ -173,7 +171,7 @@ const WhatWeOffer = () => {
                   {/* Icon */}
                   <div
                     className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-all duration-300 ${
-                      isHovered ? "bg-white" : "bg-red-600"
+                      isHovered ? "bg-white" : "bg-[var(--color-primary)]"
                     }`}
                   >
                     <img
@@ -195,7 +193,7 @@ const WhatWeOffer = () => {
                   {/* Description */}
                   <p
                     className={`mb-6 transition-colors duration-300 font-montserrat text-[16px] font-normal leading-[25.6px] ${
-                      isHovered ? "text-[#E3E3E3]" : "text-[#838181]"
+                      isHovered ? "text-[#E3E3E3]" : "text-[#838181] "
                     }`}
                   >
                     {card.description}
@@ -219,7 +217,7 @@ const WhatWeOffer = () => {
         <div className="text-center mt-12">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="px-8 py-2 bg-red-600 hover:bg-red-700 text-white text-lg font-normal rounded-full transition-colors font-poppins"
+            className="px-8 py-2 bg-[var(--color-primary)] hover:bg-red-700 text-white text-lg font-normal rounded-full transition-colors font-poppins"
           >
             {showAll ? "Show Less" : "View All"}
           </button>

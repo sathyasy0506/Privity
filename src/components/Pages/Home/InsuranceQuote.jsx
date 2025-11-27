@@ -77,7 +77,7 @@ export default function InsuranceQuote() {
         <p className="text-[16px] text-gray-300 font-[400] leading-[24px]">
           ● Contact us
         </p>
-        <h2 className="text-[45px] font-[500] leading-[60.75px]">
+        <h2 className="md:text-[45px] text-[32px] font-[500] md:leading-[60.75px]">
           Get an insurance <br /> quote to get started!
         </h2>
         <p className="text-[16px] font-[400] leading-[28.8px] text-gray-300 max-w-md">

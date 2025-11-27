@@ -42,13 +42,13 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="w-full bg-white py-20 px-6 md:px-20 font-montserrat">
+    <section className="w-full bg-white md:py-0 py-10 px-6 md:px-20 font-montserrat">
       <div className="max-w-3xl mx-auto text-center">
-        <div className="inline-block border border-red-300 text-red-500 px-5 py-1 rounded-full text-sm font-medium mb-6">
+        <div className="inline-block border border-red-300 text-[--color-primary] px-5 py-1 rounded-full text-sm font-medium mb-6">
           FAQ's
         </div>
 
-        <h2 className="text-[50px] font-[500] text-[#000001] leading-tight mb-12">
+        <h2 className="md:text-[50px] text-[34px]  font-[500] text-[#000001] leading-tight mb-12">
           Find answers to the <br className="hidden md:block" /> most asked
           questions
         </h2>

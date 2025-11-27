@@ -9,7 +9,7 @@ import favicon from "../../assets/images/favicon.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-gray-800 py-12 px-6 md:px-20 lg:px-24 font-montserrat">
+    <footer className="bg-white text-gray-800 py-12 px-6 md:px-20 lg:px-44 font-montserrat">
       {/* Left and Right Section */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-10">
         {/* Left Section */}
@@ -29,28 +29,28 @@ const Footer = () => {
           <div className="flex space-x-3 text-[16px] mb-8">
             <a
               href="#"
-              className="text-black hover:text-red-600"
+              className="text-black hover:text-[--color-primary]"
               aria-label="LinkedIn"
             >
               <FaLinkedinIn />
             </a>
             <a
               href="#"
-              className="text-black hover:text-red-600"
+              className="text-black hover:text-[--color-primary]"
               aria-label="Twitter"
             >
               <FaTwitter />
             </a>
             <a
               href="#"
-              className="text-black hover:text-red-600"
+              className="text-black hover:text-[--color-primary]"
               aria-label="Facebook"
             >
               <FaFacebookF />
             </a>
             <a
               href="#"
-              className="text-black hover:text-red-600"
+              className="text-black hover:text-[--color-primary]"
               aria-label="Dribbble"
             >
               <FaDribbble />
@@ -82,27 +82,27 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-gray-500">
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   About
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Contact
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Pricing
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Reviews
                 </a>
               </li>
@@ -116,17 +116,17 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-gray-500">
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Services
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Blogs
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Plans
                 </a>
               </li>
@@ -140,27 +140,27 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-gray-500">
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Faq's
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Terms & Co
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Privacy policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   License
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600">
+                <a href="#" className="hover:text-[--color-primary]">
                   Coming soon
                 </a>
               </li>

@@ -6,33 +6,34 @@ import support from "../../../assets/icons/support.png";
 import assistance from "../../../assets/icons/assistance.png";
 import Arrow from "../../../assets/images/Arrow.svg"; // Imported arrow SVG
 
+import premiumImage from "../../../assets/images/premium.png";
+import documentationImage from "../../../assets/images/documentation.png";
+import supportImage from "../../../assets/images/end_to_end.png";
+import assistanceImage from "../../../assets/images/personalized_assistance.png";
+
 const features = [
   {
     title: "Competitive premium pricing",
     description: "and set powerful intentions for your personal development.",
-    image:
-      "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: premiumImage,
     icon: premium,
   },
   {
     title: "Seamless documentation",
     description: "and set powerful intentions for your personal development.",
-    image:
-      "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: documentationImage,
     icon: documentation,
   },
   {
     title: "End-to-end claims support",
     description: "and set powerful intentions for your personal development.",
-    image:
-      "https://images.pexels.com/photos/3182774/pexels-photo-3182774.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: supportImage,
     icon: support,
   },
   {
     title: "Personalized assistance",
     description: "and set powerful intentions for your personal development.",
-    image:
-      "https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: assistanceImage,
     icon: assistance,
   },
 ];
@@ -42,12 +43,12 @@ const FeatureCard = ({ title, description, icon }) => {
 
   return (
     <div
-      className="rounded-3xl border border-[#CD2200] p-8 flex flex-col justify-center transition-transform duration-300 hover:scale-105 bg-white"
+      className="rounded-3xl border border-[#DBAFA6] p-8 flex flex-col justify-center transition-transform duration-300 hover:scale-105 bg-white"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Icon */}
-      <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 bg-red-600">
+      <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 bg-[var(--color-primary)]">
         <img
           src={icon}
           alt="icon"
@@ -68,7 +69,7 @@ const FeaturesAndHowItWorks = () => {
   return (
     <div className="font-montserrat">
       {/* Features Section */}
-      <section className="sticky top-0 w-full h-screen max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-6 z-10">
+      <section className="sticky top-0 w-full h-screen max-w-[1320px] mx-auto px-6  grid grid-cols-1 md:grid-cols-3 gap-2 z-10">
         {/* Row 1 */}
         <div className="flex flex-col gap-6 md:col-span-3 md:grid md:grid-cols-4">
           <FeatureCard
@@ -119,9 +120,9 @@ const FeaturesAndHowItWorks = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="w-full z-10 bg-[#E2D0CC] py-40 px-6 md:px-16 lg:px-24 text-center relative overflow-hidden rounded-t-3xl">
+      <section className="w-full z-10 bg-[#E2D0CC] py-32 px-6 md:px-16 lg:px-24 text-center relative overflow-hidden rounded-t-3xl">
         {/* Section Tag */}
-        <div className="inline-block bg-white text-[#b43b27] text-xs font-semibold px-4 py-1 rounded-full mb-4">
+        <div className="inline-block bg-white text-[var(--color-primary)] text-xs font-semibold px-4 py-1 rounded-full mb-4">
           HOW IT WORKS
         </div>
 
@@ -134,7 +135,9 @@ const FeaturesAndHowItWorks = () => {
         <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-6xl mx-auto">
           {/* Step 1 */}
           <div className="relative bg-[#EFE3E1] shadow-sm rounded-3xl p-4 flex-1">
-            <h3 className="text-[60px] font-medium text-[#b43b27] mb-4">1</h3>
+            <h3 className="text-[50px] font-medium text-[var(--color-primary)] mb-4">
+              1
+            </h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
               Choose Your Service
             </h4>
@@ -155,7 +158,9 @@ const FeaturesAndHowItWorks = () => {
 
           {/* Step 2 */}
           <div className="relative bg-[#EFE3E1] shadow-sm rounded-3xl p-8 flex-1">
-            <h3 className="text-[60px] font-medium text-[#b43b27] mb-4">2</h3>
+            <h3 className="text-[60px] font-medium text-[var(--color-primary)] mb-4">
+              2
+            </h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
               Pick Your Plan
             </h4>
@@ -176,7 +181,9 @@ const FeaturesAndHowItWorks = () => {
 
           {/* Step 3 */}
           <div className="bg-[#EFE3E1] shadow-sm rounded-3xl p-8 flex-1 relative">
-            <h3 className="text-[60px] font-medium text-[#b43b27] mb-4">3</h3>
+            <h3 className="text-[60px] font-medium text-[var(--color-primary)] mb-4">
+              3
+            </h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
               Enjoy a Secured Life
             </h4>

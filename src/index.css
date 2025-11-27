@@ -16,5 +16,15 @@ body {
   box-sizing: border-box;
 }
 
+:root {
+  --color-primary: #D50B11; /* Red - primary color */
+}
 
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
