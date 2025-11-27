@@ -13,6 +13,9 @@ import WhyChooseUs from "./WhyChooseUs";
 import FeaturesAndHowItWorks from "./FeaturesAndHowItWorks";
 import TestimonialsAndWhyChooseUs from "./TestimonialsAndWhyChooseUs";
 import HeroSection from "./HeroSection";
+import Testimonials from "./Testimonial";
+import HowItWorksSection from "./HowItWorks";
+import FeaturesSection from "./FeaturesSection";
 
 const Home = () => {
   return (
@@ -27,20 +30,29 @@ const Home = () => {
       </div>
 
       {/* Features + How It Works */}
-      <div className="relative z-20">
+      <div className="relative z-20 hidden md:block">
         <FeaturesAndHowItWorks />
       </div>
 
-      {/* Bottom sections */}
-      <div className="relative z-10">
+      <div className="block md:hidden">
+        <FeaturesSection />
+        <HowItWorksSection />
+      </div>
+
+      <div className="relative z-10 flex flex-col">
         <AboutPrivity />
         <Achievement />
-        {/* <TestimonialCarousel /> */}
-        {/* <WhyChooseUs /> */}
         <TestimonialsAndWhyChooseUs />
+
         <InsuranceQuote />
-        <TeamSection />
-        <FAQSection />
+        {/* TEAM (should be below FAQ only on mobile) */}
+        <div className="order-2 md:order-1">
+          <TeamSection />
+        </div>
+        {/* FAQ */}
+        <div className="order-1 md:order-2">
+          <FAQSection />
+        </div>
       </div>
     </main>
   );

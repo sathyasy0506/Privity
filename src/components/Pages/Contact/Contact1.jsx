@@ -69,14 +69,12 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white overflow-hidden">
       <div className="relative min-h-screen">
-     
-
-        <div className="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative max-w-[1320px] mx-auto px-4 py-20 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left info section */}
             <div className="text-slate-900">
               <div className="inline-flex items-center gap-2 bg-red-100 px-4 py-2 rounded-full mb-6 border border-red-300">
-                <span className="w-2 h-2 bg-red-600 rounded-full"></span>
+                <span className="w-2 h-2 bg-[--color-primary] rounded-full"></span>
                 <span className="text-sm font-medium text-red-900">
                   Let's Connect
                 </span>
@@ -84,7 +82,7 @@ export default function ContactPage() {
 
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-slate-900">
                 Ready to{" "}
-                <span className="bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[--color-primary] to-red-400 bg-clip-text text-transparent">
                   connect?
                 </span>
               </h1>
@@ -98,7 +96,7 @@ export default function ContactPage() {
                 <div className="flex gap-4">
                   <div className="flex-shrink-0">
                     <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-red-100 border border-red-300">
-                      <Mail className="h-6 w-6 text-red-600" />
+                      <Mail className="h-6 w-6 text-[--color-primary]" />
                     </div>
                   </div>
                   <div>
@@ -222,7 +220,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 disabled:opacity-50 text-white py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg hover:shadow-red-600/30`}
+                  className={`w-full bg-gradient-to-r from-[--color-primary] to-red-500 hover:from-red-700 hover:to-[--color-primary] disabled:opacity-50 text-white py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg hover:shadow-[--color-primary]/30`}
                 >
                   {isSubmitting ? (
                     <>
@@ -242,7 +240,7 @@ export default function ContactPage() {
                     className={`text-center text-sm mt-3 ${
                       status.type === "success"
                         ? "text-green-600"
-                        : "text-red-600"
+                        : "text-[--color-primary]"
                     }`}
                   >
                     {status.message}

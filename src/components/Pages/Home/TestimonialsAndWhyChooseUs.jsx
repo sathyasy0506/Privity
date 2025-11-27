@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // ICONS
@@ -55,29 +55,56 @@ const testimonials = [
 const features = [
   {
     title: "A strong network of 300+ Point of Sales (POS) agent",
-    desc: "Protect your biggest investment with our reliable, comprehensive, and trusted home insurance policies.",
+    description:
+      "Protect your biggest investment with our reliable, comprehensive, and trusted home insurance policies.",
     icon: network,
   },
   {
     title: "Seamless end-to-end claims support",
-    desc: "Get your designs done quickly without delays in 24 hours",
+    description: "Get your designs done quickly without delays in 24 hours",
     icon: endtoend,
   },
   {
     title:
       "Operate solely on statutory brokerage — absolutely no hidden charges",
-    desc: "Get your designs done quickly without delays in 24 hours",
+    description: "Get your designs done quickly without delays in 24 hours",
     icon: hidden,
   },
   {
     title: "Thousands of happy and loyal clients across the state",
-    desc: "Get your designs done quickly without delays in 24 hours",
+    description: "Get your designs done quickly without delays in 24 hours",
     icon: loyal,
   },
 ];
 
 export default function TestimonialsAndWhyChooseUs() {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // NEW: responsive number of visible cards (1 on small screens, 3 on md+)
+  const [visibleCount, setVisibleCount] = useState(
+    typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3
+  );
+
+  useEffect(() => {
+    // use matchMedia to listen for changes
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handleChange = (e) => {
+      setVisibleCount(e.matches ? 1 : 3);
+      // ensure currentIndex is valid if switching to 3 -> no change,
+      // but if switching to 1 it's fine; if switching to 3 and currentIndex is large it's also fine
+    };
+    // initial set
+    setVisibleCount(mq.matches ? 1 : 3);
+    mq.addEventListener
+      ? mq.addEventListener("change", handleChange)
+      : mq.addListener(handleChange);
+
+    return () => {
+      mq.removeEventListener
+        ? mq.removeEventListener("change", handleChange)
+        : mq.removeListener(handleChange);
+    };
+  }, []);
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
@@ -91,9 +118,10 @@ export default function TestimonialsAndWhyChooseUs() {
     );
   };
 
+  // compute visible testimonials based on visibleCount
   const getVisibleTestimonials = () => {
     const visible = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < visibleCount; i++) {
       const index = (currentIndex + i) % testimonials.length;
       visible.push(testimonials[index]);
     }
@@ -105,9 +133,9 @@ export default function TestimonialsAndWhyChooseUs() {
   return (
     <div className="font-montserrat">
       {/* SECTION 1: Testimonials (Sticky Parallax Section) */}
-      <section className="sticky top-0 h-screen bg-white flex items-center justify-center  overflow-hidden z-10">
-        <div className="max-w-7xl ">
-          <h1 className="text-[52px] font-[500] leading-[52px] text-gray-900 mb-16 font-montserrat">
+      <section className="sticky top-0 h-screen bg-white flex items-center justify-center overflow-hidden z-10">
+        <div className="max-w-[1320px] ">
+          <h1 className="md:text-[52px] text-[32px] md:font-[500] font-[600] leading-[52px] text-gray-900 mb-16 font-montserrat md:text-left text-center">
             Hear it from our users
           </h1>
 
@@ -115,18 +143,23 @@ export default function TestimonialsAndWhyChooseUs() {
             {/* Prev Button */}
             <button
               onClick={handlePrev}
-              className="absolute left-14 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-black/30 flex items-center justify-center transition-colors"
+              className="absolute left-10 md:left-14 top-1/2 -translate-y-1/2 -translate-x-4 z-10
+             w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/30
+             flex items-center justify-center transition-colors"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-6 h-6 text-gray-100" />
+              <ChevronLeft className="w-5 h-5 text-gray-100" />
             </button>
 
             {/* Testimonials Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* On mobile we render 1 column, on md+ render as many columns as visibleCount (3) */}
+            <div
+              className={`grid grid-cols-1 md:grid-cols-${visibleCount} gap-6`}
+            >
               {visibleTestimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
-                  className={`rounded-3xl overflow-hidden ${
+                  className={`rounded-3xl overflow-hidden mx-4 md:mx-0 ${
                     testimonial.hasBackground
                       ? "bg-gradient-to-br from-gray-700 to-gray-800 text-white"
                       : "border-[1px] border-red-300"
@@ -142,7 +175,7 @@ export default function TestimonialsAndWhyChooseUs() {
                 >
                   {testimonial.hasBackground ? (
                     <div
-                      className="relative h-full min-h-[450px] flex flex-col justify-between p-8"
+                      className="relative h-full min-h-[500px] md:min-h-[420px] flex flex-col justify-between p-8"
                       style={{
                         backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${testimonial.image})`,
                         backgroundSize: "cover",
@@ -159,7 +192,7 @@ export default function TestimonialsAndWhyChooseUs() {
                       </div>
                     </div>
                   ) : (
-                    <div className="p-8 flex flex-col h-full min-h-[450px]">
+                    <div className="p-8 flex flex-col h-full min-h-[420px]">
                       <div className="mb-6">
                         <img
                           src={testimonial.image}
@@ -184,15 +217,19 @@ export default function TestimonialsAndWhyChooseUs() {
             {/* Next Button */}
             <button
               onClick={handleNext}
-              className="absolute right-14 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-black/30 shadow-lg flex items-center justify-center transition-colors"
+              className="absolute right-10 md:right-14 top-1/2 -translate-y-1/2 translate-x-4 z-10
+             w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/30
+             shadow-lg flex items-center justify-center transition-colors"
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-6 h-6 text-gray-100" />
+              <ChevronRight className="w-5 h-5 text-gray-100" />
             </button>
           </div>
 
           {/* Dots */}
           <div className="flex justify-center gap-2 mt-12">
+            {/* If visibleCount === 1, show a dot per testimonial.
+                If visibleCount === 3, still show a dot per testimonial index (represents the starting index) */}
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -209,7 +246,7 @@ export default function TestimonialsAndWhyChooseUs() {
 
       {/* SECTION 2: Why Choose Us (Sticky Parallax Section) */}
       <section
-        className="sticky top-0 h-screen bg-[#341C1E] text-white px-6 md:px-20 py-16 overflow-hidden z-20 flex flex-col md:flex-row items-start justify-between gap-10"
+        className="sticky top-0  bg-[#341C1E] text-white px-6 md:px-20 py-16 overflow-hidden z-20 flex flex-col md:flex-row items-start justify-between gap-10"
         style={{ borderTopLeftRadius: "80px", borderTopRightRadius: "80px" }}
       >
         {/* Background circles */}
@@ -223,45 +260,16 @@ export default function TestimonialsAndWhyChooseUs() {
               Why Choose Us?
             </p>
             <div className="w-44 border-t border-gray-400 mb-6"></div>
-            <h2 className="text-[44px] font-medium leading-[57.2px]">
+            <h2 className="md:text-[44px] text-[26px] font-small md:leading-[57.2px]">
               Extensive presence across Kerala, including <br />
-              Trivandrum, Kollam, Alappuzha, Ernakulam, <br />
+              Trivandrum, Kozhikode, Kollam, Alappuzha, Ernakulam, <br />
               Kasaragod, and more
             </h2>
           </div>
-          <div className="pt-10">
-            <button className="bg-white text-[#c73c2f] font-medium rounded-3xl px-6 py-2 mt-4 hover:bg-[#ffeaea] transition-all">
-              Book Now
-            </button>
-          </div>
+          
         </div>
 
         {/* Right Section */}
-        <div className="md:w-4/7 mt-10 md:mt-0 space-y-6 relative z-10">
-          {features.map((item, i) => (
-            <div
-              key={i}
-              className="bg-[rgba(78,70,69,0.5)] backdrop-blur-[2px] rounded-[36px] p-6 flex items-center gap-4 hover:scale-[1.02] transition-transform duration-300"
-            >
-              <div className="flex items-center justify-center w-[80px] h-[80px] bg-[#c73c2f] rounded-xl flex-shrink-0">
-                <img
-                  src={item.icon}
-                  alt="feature icon"
-                  className="w-[40px] h-[40px] object-contain"
-                />
-              </div>
-              <div className="w-px bg-gray-400 h-[90px]"></div>
-              <div className="flex-1 flex flex-col gap-4">
-                <h3 className="text-[24px] font-medium leading-[33.6px] mb-1">
-                  {item.title}
-                </h3>
-                <p className="text-gray-300 text-[16px] font-normal leading-[24px]">
-                  {item.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
     </div>
   );

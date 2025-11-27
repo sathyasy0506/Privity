@@ -221,13 +221,65 @@ const Contact = () => {
                     className={`text-center mt-3 ${
                       responseType === "success"
                         ? "text-green-600"
-                        : "text-red-600"
+                        : "text-[--color-primary]"
                     }`}
                   >
                     {responseMsg}
                   </p>
                 )}
               </form>
+            </div>
+          </div>
+        </div>
+
+        {/* Locations Section */}
+        <div className="max-w-5xl mx-auto px-6 pb-20 mt-10">
+          <h2 className="text-3xl font-bold mb-8 text-center">Our Locations</h2>
+
+          <div className="bg-white shadow-2xl rounded-3xl p-10 grid md:grid-cols-2 gap-10">
+            {/* STATE BLOCK */}
+
+
+            <div className="md:col-span-2">
+              <h3 className="text-xl font-bold mb-4">KERALA</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-gray-700">
+                <p>
+                  Vyttila –{" "}
+                  <span className="font-semibold">+91 956 723 11 11</span>
+                </p>
+                <p>
+                  Kakkanad –{" "}
+                  <span className="font-semibold">+91 755 899 11 11</span>
+                </p>
+                <p>
+                  Edappally –{" "}
+                  <span className="font-semibold">+91 755 984 11 11</span>
+                </p>
+                <p>
+                  Kottayam –{" "}
+                  <span className="font-semibold">+91 755 899 22 22</span>
+                </p>
+                <p>
+                  Trivandrum –{" "}
+                  <span className="font-semibold">+91 956 235 33 33</span>
+                </p>
+                <p>
+                  Calicut –{" "}
+                  <span className="font-semibold">+91 974 719 44 44</span>
+                </p>
+                <p>
+                  Thrissur –{" "}
+                  <span className="font-semibold">+91 999 519 55 55</span>
+                </p>
+                <p>
+                  Kollam –{" "}
+                  <span className="font-semibold">+91 974 479 66 66</span>
+                </p>
+                <p>
+                  Kannur –{" "}
+                  <span className="font-semibold">+91 949 624 66 66</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>

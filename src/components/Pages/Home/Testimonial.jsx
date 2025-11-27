@@ -1,6 +1,10 @@
-import { useState } from "react";
+// File: Testimonials.jsx
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// ICONS used only in WhyChooseUs are NOT imported here
+
+// TESTIMONIALS DATA
 const testimonials = [
   {
     id: 1,
@@ -44,8 +48,30 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialCarousel() {
+export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // responsive number of visible cards (1 on small screens, 3 on md+)
+  const [visibleCount, setVisibleCount] = useState(
+    typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handleChange = (e) => {
+      setVisibleCount(e.matches ? 1 : 3);
+    };
+    setVisibleCount(mq.matches ? 1 : 3);
+    mq.addEventListener
+      ? mq.addEventListener("change", handleChange)
+      : mq.addListener(handleChange);
+
+    return () => {
+      mq.removeEventListener
+        ? mq.removeEventListener("change", handleChange)
+        : mq.removeListener(handleChange);
+    };
+  }, []);
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
@@ -61,7 +87,7 @@ export default function TestimonialCarousel() {
 
   const getVisibleTestimonials = () => {
     const visible = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < visibleCount; i++) {
       const index = (currentIndex + i) % testimonials.length;
       visible.push(testimonials[index]);
     }
@@ -71,32 +97,36 @@ export default function TestimonialCarousel() {
   const visibleTestimonials = getVisibleTestimonials();
 
   return (
-    <div className="w-full min-h-screen bg-white py-16 px-4 sm:px-6 lg:px-8 font-montserrat">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-[52px] sm:text-[52px] font-[500] leading-[52px] text-gray-900 mb-16 font-montserrat">
+    <section className="sticky top-0 h-screen bg-white flex items-center justify-center overflow-hidden z-10 font-montserrat">
+      <div className="max-w-[1320px]">
+        <h1 className="text-[52px] font-[500] leading-[52px] text-gray-900 mb-16">
           Hear it from our users
         </h1>
 
         <div className="relative">
           <button
             onClick={handlePrev}
-            className="absolute left-14 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 rounded-full bg-black/30 flex items-center justify-center transition-colors"
+            className="absolute left-10 md:left-14 top-1/2 -translate-y-1/2 -translate-x-4 z-10
+             w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/30
+             flex items-center justify-center transition-colors"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-100" />
+            <ChevronLeft className="w-5 h-5 text-gray-100" />
           </button>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            className={`grid grid-cols-1 md:grid-cols-${visibleCount} gap-6`}
+          >
             {visibleTestimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className={`rounded-3xl overflow-hidden ${
-                  testimonial.id === 1
+                className={`rounded-3xl overflow-hidden mx-4 md:mx-0 ${
+                  testimonial.hasBackground
                     ? "bg-gradient-to-br from-gray-700 to-gray-800 text-white"
                     : "border-[1px] border-red-300"
                 }`}
                 style={
-                  testimonial.id !== 1
+                  !testimonial.hasBackground
                     ? {
                         background:
                           "linear-gradient(to bottom right, #ffffff 50%, #FFE7E6 100%)",
@@ -104,26 +134,24 @@ export default function TestimonialCarousel() {
                     : {}
                 }
               >
-                {testimonial.id === 1 ? (
+                {testimonial.hasBackground ? (
                   <div
-                    className="relative h-full min-h-[450px] flex flex-col justify-between p-8"
+                    className="relative h-full min-h-[420px] flex flex-col justify-between p-8"
                     style={{
                       backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${testimonial.image})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}
                   >
-                    <p className="text-xl sm:text-2xl leading-relaxed font-light font-montserrat">
+                    <p className="text-xl sm:text-2xl leading-relaxed font-light">
                       {testimonial.text}
                     </p>
                     <div className="mt-auto">
-                      <p className="text-lg font-medium font-montserrat">
-                        {testimonial.name}
-                      </p>
+                      <p className="text-lg font-medium">{testimonial.name}</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="p-8 flex flex-col h-full min-h-[450px]">
+                  <div className="p-8 flex flex-col h-full min-h-[420px]">
                     <div className="mb-6">
                       <img
                         src={testimonial.image}
@@ -131,11 +159,11 @@ export default function TestimonialCarousel() {
                         className="w-16 h-16 rounded-full object-cover"
                       />
                     </div>
-                    <p className="text-gray-800 text-base leading-relaxed flex-grow mb-6 font-montserrat">
+                    <p className="text-gray-800 text-base leading-relaxed flex-grow mb-6">
                       {testimonial.text}
                     </p>
                     <div className="mt-auto">
-                      <p className="text-gray-900 text-lg font-semibold font-montserrat">
+                      <p className="text-gray-900 text-lg font-semibold">
                         {testimonial.name}
                       </p>
                     </div>
@@ -147,10 +175,12 @@ export default function TestimonialCarousel() {
 
           <button
             onClick={handleNext}
-            className="absolute right-14 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 rounded-full bg-black/30 shadow-lg flex items-center justify-center transition-colors"
+            className="absolute right-10 md:right-14 top-1/2 -translate-y-1/2 translate-x-4 z-10
+             w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/30
+             shadow-lg flex items-center justify-center transition-colors"
             aria-label="Next testimonial"
           >
-            <ChevronRight className="w-6 h-6 text-gray-100" />
+            <ChevronRight className="w-5 h-5 text-gray-100" />
           </button>
         </div>
 
@@ -167,6 +197,6 @@ export default function TestimonialCarousel() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

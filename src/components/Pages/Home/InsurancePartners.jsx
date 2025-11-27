@@ -26,7 +26,7 @@ import logo23 from "../../../assets/images/insurance_company_logos_23.png";
 import logo24 from "../../../assets/images/insurance_company_logos_24.png";
 
 const InsurancePartners = () => {
-  const logos = [
+  const generalInsurance = [
     logo1,
     logo2,
     logo3,
@@ -38,52 +38,69 @@ const InsurancePartners = () => {
     logo9,
     logo10,
     logo11,
-    logo12,
-    logo13,
-    logo14,
-    logo15,
-    logo16,
-    logo17,
     logo18,
+    logo14,
     logo19,
-    logo20,
-    logo21,
-    logo22,
     logo23,
-    logo24,
+    logo13,
+  ];
+
+  const lifeInsurance = [logo22, logo24, logo16];
+
+  const standaloneInsurance = [logo12, logo15, logo17, logo20, logo21];
+
+  const categories = [
+    { title: "General Insurance", logos: generalInsurance },
+    { title: "Life Insurance", logos: lifeInsurance },
+    { title: "Standalone Insurance", logos: standaloneInsurance },
   ];
 
   return (
-    <section className="w-full bg-white py-16 px-6 md:px-12 lg:px-24 text-center font-montserrat">
-      <p className="text-red-600 mb-3 text-[17px] font-[500] tracking-wide flex items-center justify-center gap-2">
-        <span className="w-2 h-2 bg-red-600 rounded-sm"></span>
+    <section className="w-full bg-white  px-6 md:px-12 lg:px-24 text-center font-montserrat ">
+      <p className="text-[var(--color-primary)] mb-3 text-[17px] font-[500] tracking-wide flex items-center justify-center gap-2">
+        <span className="w-2 h-2 bg-[var(--color-primary)] rounded-sm"></span>
         Partners
       </p>
 
-      <h2 className="text-[38px] font-[700] text-gray-900 mb-4">
+      <h2 className="text-[34px] font-[700] text-gray-900 mb-4">
         Our Insurance Partners
       </h2>
 
-      <p className="text-[#787878] text-[16px] font-[500] max-w-xl mx-auto mb-12">
+      <p className="text-[#787878] text-[16px] font-[400] max-w-xl mx-auto mb-12">
         We have strong alliances with India’s leading insurers to provide the
         widest coverage options available in the market.
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-16 justify-items-center">
-        {logos.map((logo, index) => (
+      {/* Categories */}
+      {categories.map((cat, i) => (
+        <div key={i} className="mb-16">
+          <h3 className="text-[26px] font-[700] text-gray-800 mb-6 text-center">
+            {cat.title}
+          </h3>
+
+          {/* MOBILE: row scroll | DESKTOP: wrap */}
           <div
-            key={index}
-            className="w-[160px] h-[110px]  flex items-center justify-center
-                       transform transition-transform duration-200 hover:scale-110"
+            className="
+              flex gap-6 justify-start
+              overflow-x-auto no-scrollbar
+              sm:flex-wrap sm:justify-center
+            "
           >
-            <img
-              src={logo}
-              alt={`Insurance Partner ${index + 1}`}
-              className="max-w-[140px] max-h-[90px] object-contain"
-            />
+            {cat.logos.map((logo, index) => (
+              <div
+                key={index}
+                className="w-[160px] h-[110px] flex items-center justify-center transform transition-transform duration-200 hover:scale-110"
+              >
+                <img
+                  src={logo}
+                  alt={`${cat.title} Logo ${index + 1}`}
+                  className="max-w-[140px] max-h-[90px] object-contain"
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </section>
   );
 };

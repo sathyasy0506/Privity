@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
-const Header = () => {
+const Header = ({ sticky = true }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true); // header visible state
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -11,7 +13,6 @@ const Header = () => {
   const navigation = [
     { name: "About", path: "/", sectionId: "about" },
     { name: "Services", path: "/", sectionId: "what-we-offer" },
-    // { name: "Blogs", path: "/" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -32,23 +33,58 @@ const Header = () => {
 
   // Handle click for nav items
   const handleNavClick = (e, item) => {
-    // if sectionId is defined, it means it's an on-page section
     if (item.sectionId) {
       e.preventDefault();
       if (location.pathname === "/") {
-        // Already on homepage → scroll
         handleScrollToSection(item.sectionId);
       } else {
-        // Navigate to homepage first, then scroll
         navigate("/");
+        // small delay to allow Home to mount
         setTimeout(() => handleScrollToSection(item.sectionId), 600);
       }
     }
   };
 
+  // Auto-hide on scroll (hide on scroll down, show on scroll up)
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+
+          // Show only near top
+          if (currentScrollY < 80) {
+            setVisible(true);
+          } else {
+            setVisible(false);
+          }
+
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // header classes: sticky vs static and hide/show transform
+  const containerPositionClass = sticky
+    ? "fixed left-0 top-0 w-full z-50"
+    : "relative w-full z-50";
+
+  const transformClass = visible ? "translate-y-0" : "-translate-y-full";
+
   return (
-    <header className="backdrop-blur-md bg-white/70 fixed left-0 top-0 w-full z-50 transition">
-      <div className="max-w-7xl mx-auto px-6">
+    <header
+      className={`${containerPositionClass} transition-transform duration-300 ease-in-out ${transformClass} backdrop-blur-md bg-white/70`}
+      style={{ willChange: "transform" }}
+    >
+      <div className="max-w-[1320px] mx-auto px-6">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -65,7 +101,7 @@ const Header = () => {
                   key={item.name}
                   href={item.path}
                   onClick={(e) => handleNavClick(e, item)}
-                  className={`relative text-black font-light text-[18px] tracking-wide transition-all group hover:text-red-600 ${
+                  className={`relative text-black font-light text-[18px] tracking-wide transition-all group hover:text-[--color-primary] ${
                     isActive(item.path) ? "text-black" : ""
                   }`}
                 >
@@ -75,7 +111,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`relative text-black font-light text-[18px] tracking-wide transition-all group hover:text-red-600 ${
+                  className={`relative text-black font-light text-[18px] tracking-wide transition-all group hover:text-[--color-primary] ${
                     isActive(item.path) ? "text-black" : ""
                   }`}
                 >
@@ -96,7 +132,7 @@ const Header = () => {
                   setTimeout(() => handleScrollToSection("quote"), 600);
                 }
               }}
-              className="w-full px-5 py-2 bg-red-600 text-white text-lg font-normal rounded-full border-[1px] border-red-600 transition-all duration-300 ease-in-out transform hover:bg-white hover:text-red-600 hover:opacity-90 font-montserrat"
+              className="w-full px-5 py-2 bg-[--color-primary] text-white text-lg font-normal rounded-full border-[1px] border-[--color-primary] transition-all duration-300 ease-in-out transform hover:bg-white hover:text-[--color-primary] hover:opacity-90 font-montserrat"
             >
               Get Started
             </button>
@@ -106,7 +142,7 @@ const Header = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-black hover:text-red-600 transition"
+              className="text-black hover:text-[--color-primary] transition"
             >
               <svg
                 className="w-7 h-7"
@@ -145,7 +181,7 @@ const Header = () => {
                     handleNavClick(e, item);
                     setIsMobileMenuOpen(false);
                   }}
-                  className="block w-full text-center py-2 rounded-md font-medium text-black hover:text-red-600 transition"
+                  className="block w-full text-center py-2 rounded-md font-medium text-black hover:text-[--color-primary] transition"
                 >
                   {item.name}
                 </button>
@@ -154,13 +190,13 @@ const Header = () => {
                   key={item.name}
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-center py-2 rounded-md font-medium text-black hover:text-red-600 transition"
+                  className="block text-center py-2 rounded-md font-medium text-black hover:text-[--color-primary] transition"
                 >
                   {item.name}
                 </Link>
               )
             )}
-            <button className="w-full px-4 py-2 bg-red-600 text-white text-lg font-montserrat font-normal rounded-full border-2 border-red-600 transition-colors duration-300 ease-in-out transform hover:-translate-y-1 hover:bg-white hover:text-red-600">
+            <button className="w-full px-4 py-2 bg-[--color-primary] text-white text-lg font-montserrat font-normal rounded-full border-2 border-[--color-primary] transition-colors duration-300 ease-in-out transform hover:-translate-y-1 hover:bg-white hover:text-[--color-primary]">
               Get Started
             </button>
           </div>
