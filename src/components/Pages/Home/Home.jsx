@@ -11,6 +11,7 @@ import FAQSection from "./FAQSection";
 import InsuranceQuote from "./InsuranceQuote";
 import WhyChooseUs from "./WhyChooseUs";
 import FeaturesAndHowItWorks from "./FeaturesAndHowItWorks";
+import FeaturesAndHowItWorksMobile from "./FeaturesAndHowItWorksMobile";
 import TestimonialsAndWhyChooseUs from "./TestimonialsAndWhyChooseUs";
 import HeroSection from "./HeroSection";
 import Testimonials from "./Testimonial";
@@ -35,8 +36,10 @@ const Home = () => {
       </div>
 
       <div className="block md:hidden">
-        <FeaturesSection />
-        <HowItWorksSection />
+        {/* <FeaturesSection />
+        <HowItWorksSection /> */}
+
+        <FeaturesAndHowItWorksMobile />
       </div>
 
       <div className="relative z-10 flex flex-col">

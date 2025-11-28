@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -42,9 +42,7 @@ const Counter = ({ target, duration, className }) => {
 /**
  * Updated InfoCards:
  * - Desktop / md+: shows the 4-card grid (original look)
- * - Mobile (<=767px): shows a single main card with prev/next arrows
- *   - icon above the title (centered)
- *   - consistent min-height so cards remain the same height
+ * - Mobile (<=767px): horizontal scroll container with snap + dots (no buttons)
  */
 const InfoCards = () => {
   const cards = [
@@ -75,10 +73,16 @@ const InfoCards = () => {
   // index of card currently shown on mobile
   const [current, setCurrent] = useState(0);
 
-  // isMobile state using matchMedia
+  // isMobile state using matchMedia (safe check for SSR)
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth <= 767 : false
   );
+
+  // ref to the scroll container on mobile
+  const scrollRef = useRef(null);
+
+  // width of each card in the scroll container (updated on resize)
+  const [cardWidth, setCardWidth] = useState(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
@@ -87,6 +91,7 @@ const InfoCards = () => {
       ? mq.addEventListener("change", handler)
       : mq.addListener(handler);
     setIsMobile(mq.matches);
+
     return () => {
       mq.removeEventListener
         ? mq.removeEventListener("change", handler)
@@ -94,78 +99,112 @@ const InfoCards = () => {
     };
   }, []);
 
-  const prev = () => {
-    setCurrent((c) => (c === 0 ? cards.length - 1 : c - 1));
+  // update cardWidth when mobile changes or on resize
+  useEffect(() => {
+    const updateWidth = () => {
+      if (scrollRef.current) {
+        setCardWidth(scrollRef.current.clientWidth);
+      } else {
+        // fallback to viewport width
+        setCardWidth(typeof window !== "undefined" ? window.innerWidth : 0);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, [isMobile]);
+
+  // scroll handler to update current dot based on scroll position
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let rafId = null;
+    const onScroll = () => {
+      // throttle via requestAnimationFrame
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const left = el.scrollLeft;
+        const width = cardWidth || el.clientWidth || 1;
+        const idx = Math.round(left / width);
+        setCurrent(Math.max(0, Math.min(cards.length - 1, idx)));
+      });
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    // initialize
+    onScroll();
+
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [cardWidth, cards.length]);
+
+  // scroll to a given card index (used by dots)
+  const scrollToIndex = (index) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const left = index * (cardWidth || el.clientWidth);
+    el.scrollTo({ left, behavior: "smooth" });
+    setCurrent(index);
   };
 
-  const next = () => {
-    setCurrent((c) => (c === cards.length - 1 ? 0 : c + 1));
-  };
-
-  // MOBILE LAYOUT
+  // MOBILE LAYOUT: horizontal scroll with snap + dots (no prev/next buttons)
   if (isMobile) {
-    const main = cards[current];
-
     return (
       <div className="w-full max-w-[1320px] mx-auto py-6 px-4">
         <div className="flex flex-col items-center gap-4">
-          {/* Main Card */}
-          <div className="rounded-[24px] p-6 w-full bg-white border border-red-200 shadow-sm">
-            <div className="flex flex-col items-center gap-4 min-h-[200px] justify-center">
-              {/* Icon (above title) */}
-              <div className="w-14 h-14 rounded-full bg-[#ea1f04] flex items-center justify-center">
-                <img
-                  src={main.icon}
-                  alt={main.title}
-                  className="w-8 h-8 object-contain"
-                />
-              </div>
+          {/* Scroll container */}
+          <div
+            ref={scrollRef}
+            className="w-full overflow-x-auto no-scrollbar snap-x snap-mandatory"
+            style={{ WebkitOverflowScrolling: "touch" }}
+            role="region"
+            aria-label="Features carousel"
+          >
+            <div className="flex w-full">
+              {cards.map((card, i) => (
+                <div
+                  key={i}
+                  className="snap-center flex-none w-full px-2"
+                  aria-hidden={current !== i}
+                >
+                  <div className="rounded-[24px] p-6 w-full bg-white border border-red-200 shadow-sm h-[260px] flex flex-col items-center justify-center">
+                    <div className="w-14 h-14 rounded-full bg-[#ea1f04] flex items-center justify-center mb-3">
+                      <img
+                        src={card.icon}
+                        alt={card.title}
+                        className="w-8 h-8 object-contain"
+                      />
+                    </div>
 
-              {/* Title */}
-              <h3 className="text-[#E33E1F] font-[600] text-[16px] leading-[22px] text-center">
-                {main.title}
-              </h3>
+                    <h3 className="text-[#E33E1F] font-[600] text-[16px] leading-[22px] text-center px-2">
+                      {card.title}
+                    </h3>
 
-              {/* Description */}
-              <p className="text-gray-700 text-[15px] font-[400] leading-[24px] px-1 text-center">
-                {main.description}
-              </p>
+                    <p className="text-gray-700 text-[15px] font-[400] leading-[24px] px-1 text-center mt-3">
+                      {card.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Buttons + indicators below the card, centered */}
-          <div className="w-full flex flex-col items-center gap-3">
-            <div className="flex items-center gap-4">
+          {/* Dots */}
+          <div className="flex items-center gap-2 mt-1">
+            {cards.map((_, i) => (
               <button
-                onClick={prev}
-                aria-label="Previous card"
-                className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center hover:bg-black/20 transition"
-              >
-                <ChevronLeft className="w-5 h-5 text-black" />
-              </button>
-
-              <button
-                onClick={next}
-                aria-label="Next card"
-                className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center hover:bg-black/20 transition"
-              >
-                <ChevronRight className="w-5 h-5 text-black" />
-              </button>
-            </div>
-
-            {/* Dots */}
-            <div className="flex items-center gap-2 mt-1">
-              {cards.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  aria-label={`Go to card ${i + 1}`}
-                  className={`w-2.5 h-2.5 rounded-full transition-all ${
-                    i === current ? "scale-110 bg-[#ea1f04]" : "bg-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
+                key={i}
+                onClick={() => scrollToIndex(i)}
+                aria-label={`Go to card ${i + 1}`}
+                className={`w-2.5 h-2.5 rounded-full transition-all ${
+                  i === current ? "scale-110 bg-[#ea1f04]" : "bg-gray-300"
+                }`}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -226,20 +265,17 @@ const AboutPrivity = () => {
 
             {/* Badge OUTSIDE image */}
             <div
-              className="absolute -bottom-4  flex flex-col gap-6 right-1 z-50 bg-[#FEFFFF] shadow-md rounded-[30px]
-                px-4 py-6 w-42
-                min-h-[170px]   /* mobile: taller */
-                lg:min-h-[auto] "
+              className="absolute -bottom-4 flex flex-col gap-[40px] right-1 z-50 bg-[#FEFFFF] shadow-md rounded-[20px]
+    px-4 py-4 w-42 min-h-[5px]"
             >
-              <p className="text-gray-900 text-[16px] font-[400] leading-5 mb-2">
+              <p className="text-gray-900 text-[16px] font-[400] leading-4">
                 Certified Batch
               </p>
-              <p className="text-[var(--color-primary)] text-[24px] font-[600] leading-5">
+              <p className="text-[var(--color-primary)] text-[20px] font-[600] leading-5">
                 Privity
               </p>
-              <p className="text-gray-800 text-[16px] font-[500] leading-6 mt-1">
-                Certified
-                <br />
+              <p className="text-gray-800 text-[14px] font-[500] leading-7">
+                Certified <br />
                 Professional 2025
               </p>
             </div>
