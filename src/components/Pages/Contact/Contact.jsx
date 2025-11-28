@@ -69,7 +69,7 @@ const Contact = () => {
           alt="Contact Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#FF2703]/70"></div>
+        <div className="absolute inset-0 bg-[2d2ade]/70"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-wide mb-2">
             Contact Us
@@ -97,7 +97,7 @@ const Contact = () => {
 
               <div className="space-y-6 mb-12">
                 <div className="flex items-start gap-4">
-                  <div className="bg-[#FF2703] rounded-full p-3 flex-shrink-0">
+                  <div className="bg-[--color-primary] rounded-full p-3 flex-shrink-0">
                     <Phone className="text-white" size={24} />
                   </div>
                   <div>
@@ -107,7 +107,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-[#FF2703] rounded-full p-3 flex-shrink-0">
+                  <div className="bg-[--color-primary] rounded-full p-3 flex-shrink-0">
                     <Mail className="text-white" size={24} />
                   </div>
                   <div>
@@ -117,7 +117,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-[#FF2703] rounded-full p-3 flex-shrink-0">
+                  <div className="bg-[--color-primary] rounded-full p-3 flex-shrink-0">
                     <MapPin className="text-white" size={24} />
                   </div>
                   <div>
@@ -135,13 +135,13 @@ const Contact = () => {
                   Follow our social media
                 </h3>
                 <div className="flex gap-3">
-                  <button className="bg-[#FF2703] rounded-full p-3">
+                  <button className="bg-[--color-primary] rounded-full p-3">
                     <Facebook className="text-white" size={20} />
                   </button>
-                  <button className="bg-[#FF2703] rounded-full p-3">
+                  <button className="bg-[--color-primary] rounded-full p-3">
                     <Instagram className="text-white" size={20} />
                   </button>
-                  <button className="bg-[#FF2703] rounded-full p-3">
+                  <button className="bg-[--color-primary] rounded-full p-3">
                     <Twitter className="text-white" size={20} />
                   </button>
                 </div>
@@ -161,7 +161,7 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-[#FF2703] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF2703]"
+                    className="w-full px-4 py-3 border-2 border-[--color-primary] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-primary]"
                     required
                   />
                 </div>
@@ -175,7 +175,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-[#FF2703] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF2703]"
+                    className="w-full px-4 py-3 border-2 border-[--color-primary] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-primary]"
                     required
                   />
                 </div>
@@ -189,7 +189,7 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-[#FF2703] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF2703]"
+                    className="w-full px-4 py-3 border-2 border-[--color-primary] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-primary]"
                     required
                   />
                 </div>
@@ -203,7 +203,7 @@ const Contact = () => {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-[#FF2703] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF2703] resize-none"
+                    className="w-full px-4 py-3 border-2 border-[--color-primary] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-primary] resize-none"
                     required
                   ></textarea>
                 </div>
@@ -211,7 +211,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#FF2703] hover:bg-[#e42202] transition-colors text-white font-semibold py-4 rounded-lg text-lg"
+                  className="w-full bg-[--color-primary] hover:bg-[#e42202] transition-colors text-white font-semibold py-4 rounded-lg text-lg"
                 >
                   {loading ? "Sending..." : "Send Message"}
                 </button>

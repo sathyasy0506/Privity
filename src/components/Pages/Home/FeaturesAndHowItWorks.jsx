@@ -59,7 +59,7 @@ const FeatureCard = ({ title, description, icon }) => {
       </div>
 
       {/* Text */}
-      <h3 className="text-xl font-semibold text-[#CD2200] mb-2">{title}</h3>
+      <h3 className="text-xl font-semibold text-[--color-primary] mb-2">{title}</h3>
       <p className="text-gray-600 leading-relaxed">{description}</p>
     </div>
   );

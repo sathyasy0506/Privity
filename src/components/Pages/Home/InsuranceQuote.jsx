@@ -142,7 +142,7 @@ export default function InsuranceQuote() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`group relative inline-flex items-center bg-white text-[#BC2209] rounded-full pl-8 sm:pl-12 pr-4 py-3 w-56 sm:w-64 transition-colors duration-300 overflow-hidden ${
+            className={`group relative inline-flex items-center bg-white text-[--color-primary] rounded-full pl-8 sm:pl-12 pr-4 py-3 w-56 sm:w-64 transition-colors duration-300 overflow-hidden ${
               isSubmitting
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:bg-gray-100"
@@ -151,14 +151,14 @@ export default function InsuranceQuote() {
             <span className="transform transition-transform duration-500 group-hover:translate-x-2 sm:group-hover:translate-x-4 text-sm sm:text-base">
               {isSubmitting ? "Sending..." : "Submit Your Form"}
             </span>
-            <span className="absolute top-1/2 transform -translate-y-1/2 right-4 transition-transform duration-500 group-hover:translate-x-[-8.75rem] sm:group-hover:translate-x-[-11.75rem] w-6 h-6 sm:w-8 sm:h-8 bg-[#BC2207] rounded-full flex items-center justify-center">
+            <span className="absolute top-1/2 transform -translate-y-1/2 right-4 transition-transform duration-500 group-hover:translate-x-[-8.75rem] sm:group-hover:translate-x-[-11.75rem] w-6 h-6 sm:w-8 sm:h-8 bg-[--color-primary] rounded-full flex items-center justify-center">
               <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
             </span>
           </button>
 
           <p
             className={`mt-2 text-sm h-6 transition-opacity duration-500 ${
-              status.type === "success" ? "text-green-500" : "text-red-500"
+              status.type === "success" ? "text-green-500" : "text-[--color-primary]"
             }`}
             style={{ opacity: status.message ? 1 : 0 }}
           >
@@ -168,7 +168,7 @@ export default function InsuranceQuote() {
       </div>
 
       {/* Right Image */}
-      <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center relative z-10">
+      <div className="w-full lg:w-1/2 -mt-20 lg:mt-0 flex justify-center relative z-10">
         <div className="relative">
           <img
             src={insuranceLady}

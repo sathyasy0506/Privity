@@ -49,11 +49,11 @@ const Home = () => {
 
         <InsuranceQuote />
         {/* TEAM (should be below FAQ only on mobile) */}
-        <div className="order-2 md:order-1">
+        <div className="order-1 md:order-1">
           <TeamSection />
         </div>
         {/* FAQ */}
-        <div className="order-1 md:order-2">
+        <div className="order-2 md:order-2">
           <FAQSection />
         </div>
       </div>

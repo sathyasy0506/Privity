@@ -109,7 +109,7 @@ const WhatWeOffer = () => {
   const displayedCards = showAll ? cardsData : cardsData.slice(0, 6);
 
   return (
-    <div id="what-we-offer" className="min-h-screen  px-6">
+    <div id="what-we-offer" className="min-h-screen px-6">
       <div className="max-w-[1320px] mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -168,32 +168,35 @@ const WhatWeOffer = () => {
 
                 {/* Card Content */}
                 <div className="relative z-10 flex flex-col items-start">
-                  {/* Icon */}
-                  <div
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-all duration-300 ${
-                      isHovered ? "bg-white" : "bg-[var(--color-primary)]"
-                    }`}
-                  >
-                    <img
-                      src={isHovered ? card.iconHover : card.icon}
-                      alt={card.title}
-                      className="w-8 h-8 object-contain transition-transform duration-300"
-                    />
-                  </div>
+                  {/* ICON + TITLE in same row only on mobile */}
+                  <div className="flex items-center gap-4 md:block">
+                    {/* Icon */}
+                    <div
+                      className={`w-16 h-16 rounded-full flex items-center justify-center mb-0 md:mb-6 transition-all duration-300 ${
+                        isHovered ? "bg-white" : "bg-[var(--color-primary)]"
+                      }`}
+                    >
+                      <img
+                        src={isHovered ? card.iconHover : card.icon}
+                        alt={card.title}
+                        className="w-8 h-8 object-contain transition-transform duration-300"
+                      />
+                    </div>
 
-                  {/* Title */}
-                  <h3
-                    className={`mb-4 transition-colors duration-300 font-montserrat text-[20px] font-medium leading-[22px] ${
-                      isHovered ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {card.title}
-                  </h3>
+                    {/* Title */}
+                    <h3
+                      className={`transition-colors duration-300 font-montserrat text-[20px] font-medium leading-[22px] ${
+                        isHovered ? "text-white" : "text-gray-900"
+                      }`}
+                    >
+                      {card.title}
+                    </h3>
+                  </div>
 
                   {/* Description */}
                   <p
-                    className={`mb-6 transition-colors duration-300 font-montserrat text-[16px] font-normal leading-[25.6px] ${
-                      isHovered ? "text-[#E3E3E3]" : "text-[#838181] "
+                    className={`mt-4 mb-6 transition-colors duration-300 font-montserrat text-[16px] font-normal leading-[25.6px] ${
+                      isHovered ? "text-[#E3E3E3]" : "text-[#838181]"
                     }`}
                   >
                     {card.description}

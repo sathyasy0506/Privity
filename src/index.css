@@ -17,9 +17,11 @@ body {
 }
 
 :root {
-  --color-primary: #D50B11; /* Red - primary color */
+  --color-primary: #DE2A2D; /* Red - primary color */
 }
 
+
+#DE2A2D
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -28,3 +30,5 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
