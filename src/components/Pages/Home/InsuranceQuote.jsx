@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import insuranceLady from "../../../assets/images/insurance-lady.avif"; // adjust path
+import insuranceLady from "../../../assets/images/insurance-lady.png"; // adjust path
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { showToast } from "../../Common/Toaster"; // adjust path
 import { ENDPOINTS } from "../../../config/api"; // adjust path
