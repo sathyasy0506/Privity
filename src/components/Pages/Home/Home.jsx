@@ -17,6 +17,7 @@ import HeroSection from "./HeroSection";
 import Testimonials from "./Testimonial";
 import HowItWorksSection from "./HowItWorks";
 import FeaturesSection from "./FeaturesSection";
+import TestimonialsAndWhyChooseUsw from "./TestimonialsAndWhyChooseUsw";
 
 const Home = () => {
   return (
@@ -45,8 +46,14 @@ const Home = () => {
       <div className="relative z-10 flex flex-col">
         <AboutPrivity />
         <Achievement />
-        <TestimonialsAndWhyChooseUs />
-
+        {/* Web version */}{" "}
+        <div className="block md:hidden">
+          <TestimonialsAndWhyChooseUs />
+        </div>
+        {/* Mobile version */}
+        <div className="hidden md:block">
+          <TestimonialsAndWhyChooseUsw />
+        </div>
         <InsuranceQuote />
         {/* TEAM (should be below FAQ only on mobile) */}
         <div className="order-1 md:order-1">
