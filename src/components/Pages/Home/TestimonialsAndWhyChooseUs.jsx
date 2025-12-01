@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // ICONS
@@ -60,6 +60,9 @@ export default function TestimonialsAndWhyChooseUs() {
     return window.innerWidth < 768 ? 2 : 3;
   });
 
+  // ref for mobile scroll container
+  const scrollRef = useRef(null);
+
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
     const handleChange = (e) => {
@@ -87,6 +90,7 @@ export default function TestimonialsAndWhyChooseUs() {
     setCurrentIndex((prev) =>
       prev === 0 ? testimonials.length - 1 : prev - 1
     );
+    // For desktop grid we don't scroll, desktop uses currentIndex to decide visible cards
   };
   const handleNext = () => {
     setCurrentIndex((prev) =>
@@ -106,6 +110,40 @@ export default function TestimonialsAndWhyChooseUs() {
 
   const visibleTestimonials = getVisibleTestimonials();
   const isMobile = visibleCount === 2;
+
+  // IntersectionObserver for mobile to update currentIndex when user scrolls/swipes
+  useEffect(() => {
+    if (!isMobile || !scrollRef.current) return;
+
+    const container = scrollRef.current;
+
+    const options = {
+      root: container,
+      threshold: 0.6, // require ~60% visibility to consider it the active card
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const idxAttr = entry.target.getAttribute("data-index");
+          const idx = idxAttr ? Number(idxAttr) : 0;
+          // ensure within bounds
+          if (!Number.isNaN(idx)) setCurrentIndex(idx);
+        }
+      });
+    }, options);
+
+    // observe all testimonial-card children
+    const cards = container.querySelectorAll(".testimonial-card");
+    cards.forEach((card) => observer.observe(card));
+
+    // Ensure currentIndex matches first visible card on mount
+    // find any card currently intersecting
+    // (optional: set to first intersecting if any)
+    // cleanup
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobile, testimonials.length]);
 
   return (
     // OUTER WRAPPER provides scrollable space for parallax: > 100vh
@@ -130,6 +168,7 @@ export default function TestimonialsAndWhyChooseUs() {
             </button>
 
             <div
+              ref={isMobile ? scrollRef : null}
               className={`w-full ${
                 isMobile
                   ? "flex gap-6 overflow-x-auto md:hidden"
@@ -145,10 +184,11 @@ export default function TestimonialsAndWhyChooseUs() {
               }
             >
               {isMobile
-                ? testimonials.map((testimonial) => (
+                ? testimonials.map((testimonial, idx) => (
                     <div
                       key={testimonial.id}
-                      className={`rounded-3xl overflow-hidden flex-shrink-0 snap-start ${
+                      data-index={idx} // 0-based index used by observer
+                      className={`testimonial-card rounded-3xl overflow-hidden flex-shrink-0 snap-start ${
                         testimonial.hasBackground
                           ? "bg-gradient-to-br from-gray-700 to-gray-800 text-white"
                           : "border-[1px] border-red-300 bg-white"
@@ -257,9 +297,29 @@ export default function TestimonialsAndWhyChooseUs() {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-gray-900" : "bg-gray-300"
+                onClick={() => {
+                  // On desktop clicking dot should change visible testimonials (works via currentIndex)
+                  // On mobile clicking should also scroll to that card if possible
+                  setCurrentIndex(index);
+                  if (isMobile && scrollRef.current) {
+                    const container = scrollRef.current;
+                    const card = container.querySelector(
+                      `.testimonial-card[data-index='${index}']`
+                    );
+                    if (card) {
+                      // smooth scroll the card into view in the container
+                      // use scrollLeft calculation for consistent behavior
+                      const left =
+                        card.offsetLeft -
+                        (container.clientWidth - card.clientWidth) / 2;
+                      container.scrollTo({ left, behavior: "smooth" });
+                    }
+                  }
+                }}
+                className={`w-[10px] h-[10px] rounded-full transition-colors ${
+                  index === currentIndex
+                    ? "bg-[--color-primary]"
+                    : "bg-gray-300"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
