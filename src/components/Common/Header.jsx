@@ -173,29 +173,31 @@ const Header = ({ sticky = true }) => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden mt-2 rounded-lg border border-gray-200 bg-white shadow-md py-4 px-5 space-y-4 animate-fade-in-up font-montserrat">
-            {navigation.map((item) =>
-              item.sectionId ? (
-                <button
-                  key={item.name}
-                  onClick={(e) => {
-                    handleNavClick(e, item);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="block w-full text-center py-2 rounded-md font-medium text-black hover:text-[--color-primary] transition"
-                >
-                  {item.name}
-                </button>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-center py-2 rounded-md font-medium text-black hover:text-[--color-primary] transition"
-                >
-                  {item.name}
-                </Link>
-              )
-            )}
+            {navigation
+              .filter((item) => item.name !== "Contact") // 🔴 hide Contact only in mobile
+              .map((item) =>
+                item.sectionId ? (
+                  <button
+                    key={item.name}
+                    onClick={(e) => {
+                      handleNavClick(e, item);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="block w-full text-center py-2 rounded-md font-medium text-black hover:text-[--color-primary] transition"
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block text-center py-2 rounded-md font-medium text-black hover:text-[--color-primary] transition"
+                  >
+                    {item.name}
+                  </Link>
+                )
+              )}
             <button className="w-full px-4 py-2 bg-[--color-primary] text-white text-lg font-montserrat font-normal rounded-full border-2 border-[--color-primary] transition-colors duration-300 ease-in-out transform hover:-translate-y-1 hover:bg-white hover:text-[--color-primary]">
               Get Started
             </button>

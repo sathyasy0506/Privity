@@ -172,11 +172,17 @@ const InfoCards = () => {
                   aria-hidden={current !== i}
                 >
                   <div className="rounded-[24px] p-6 w-full bg-white border border-red-200 shadow-sm h-[260px] flex flex-col items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-[[#ea1f04]] flex items-center justify-center mb-3">
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center mb-3"
+                      style={{
+                        backgroundColor: "var(--color-primary, #ea1f04)",
+                      }}
+                    >
                       <img
                         src={card.icon}
                         alt={card.title}
-                        className="w-8 h-8 object-contain"
+                        className="w-8 h-8 object-contain z-10"
+                        draggable={false}
                       />
                     </div>
 

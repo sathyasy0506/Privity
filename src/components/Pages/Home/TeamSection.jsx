@@ -13,9 +13,9 @@ export default function TeamSection() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center md:p-8 font-montserrat">
+    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center md:p-8 md:-mt-10  pb-8 font-montserrat">
       <div className="w-full max-w-10xl bg-[#F3E1E1] md:rounded-[50px] md:p-10 p-4">
-        <h1 className="text-[40px] leading-[56px] font-medium text-center mb-16 font-montserrat">
+        <h1 className="text-[40px] leading-[56px] font-medium text-center mb-8 mt-8 font-montserrat ">
           Our <span className="text-[--color-primary]">Key Persons</span>
         </h1>
 
