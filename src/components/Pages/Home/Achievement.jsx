@@ -3,7 +3,8 @@ import image from "../../../assets/images/guide.png";
 
 function Achievement() {
   return (
-    <section className="w-full bg-white  px-8 lg:px-24 font-montserrat">
+    // Achievement top line: replace with this
+    <section className="w-full bg-white px-8 lg:px-24 font-montserrat md:mb-8 mb-6 z-40">
       {/* Top Row */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
         <h2 className="md:text-[52px] text-[32px] font-[600] text-gray-900 md:leading-[72.8px]">

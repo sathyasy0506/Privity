@@ -1,5 +1,5 @@
 import React from "react";
-import chairman from "../../../assets/images/chairman.jpg";
+import chairman from "../../../assets/images/chairman.png";
 
 export default function TeamSection() {
   const teamMembers = [
@@ -13,9 +13,9 @@ export default function TeamSection() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center md:p-8 font-montserrat">
+    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center md:p-8 md:-mt-10  pb-8 font-montserrat">
       <div className="w-full max-w-10xl bg-[#F3E1E1] md:rounded-[50px] md:p-10 p-4">
-        <h1 className="text-[40px] leading-[56px] font-medium text-center mb-16 font-montserrat">
+        <h1 className="text-[40px] leading-[56px] font-medium text-center mb-8 mt-8 font-montserrat ">
           Our <span className="text-[--color-primary]">Key Persons</span>
         </h1>
 
@@ -24,14 +24,14 @@ export default function TeamSection() {
             <div
               key={index}
               className={`
-    bg-white rounded-3xl p-8 shadow-lg
+    bg-white rounded-3xl  shadow-lg
     flex flex-col-reverse md:flex-row
     items-center gap-6 w-full
     ${index === 0 ? "md:col-span-2 max-w-6xl" : "max-w-3xl"}
   `}
             >
               {/* Content - Left on web, below image on mobile */}
-              <div className="flex-1 text-left">
+              <div className="flex-1 text-left p-8">
                 <h2 className="text-[30px] font-[500] text-gray-800 mb-2">
                   {member.name}
                 </h2>
@@ -44,7 +44,7 @@ export default function TeamSection() {
               </div>
 
               {/* Image - Right on web, top on mobile */}
-              <div className="flex-shrink-0 mb-4 md:mb-0">
+              <div className="flex-shrink-0 mb-4 md:mb-0 ">
                 <img
                   src={member.imageUrl}
                   alt={member.name}

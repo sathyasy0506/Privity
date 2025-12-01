@@ -36,8 +36,8 @@ export default function HeroBanner() {
   }, [banners.length]);
 
   return (
-    <div className="relative w-full overflow-hidden">
-      {banners.map((banner, index) => (
+    <div className="relative w-full overflow-hidden md:mb-0 -mb-10">
+      {banners.map((banner, index) => (  
         <div
           key={index}
           className={`transition-opacity duration-1000 ${

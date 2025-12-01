@@ -172,15 +172,21 @@ const InfoCards = () => {
                   aria-hidden={current !== i}
                 >
                   <div className="rounded-[24px] p-6 w-full bg-white border border-red-200 shadow-sm h-[260px] flex flex-col items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-[#ea1f04] flex items-center justify-center mb-3">
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center mb-3"
+                      style={{
+                        backgroundColor: "var(--color-primary, #ea1f04)",
+                      }}
+                    >
                       <img
                         src={card.icon}
                         alt={card.title}
-                        className="w-8 h-8 object-contain"
+                        className="w-8 h-8 object-contain z-10"
+                        draggable={false}
                       />
                     </div>
 
-                    <h3 className="text-[#E33E1F] font-[600] text-[16px] leading-[22px] text-center px-2">
+                    <h3 className="text-[--color-primary] font-[600] text-[16px] leading-[22px] text-center px-2">
                       {card.title}
                     </h3>
 
@@ -221,7 +227,7 @@ const InfoCards = () => {
         >
           {/* Icon on Top - Centered */}
           <div className="mb-4 flex items-start">
-            <div className="w-12 h-12 rounded-full bg-[#ea1f04] flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-[--color-primary] flex items-center justify-center">
               <img
                 src={card.icon}
                 alt={card.title}
@@ -231,7 +237,7 @@ const InfoCards = () => {
           </div>
 
           {/* Title */}
-          <h3 className="text-[#E33E1F] font-[600] text-[16px] leading-[28.8px] mb-2">
+          <h3 className="text-[--color-primary] font-[600] text-[16px] leading-[28.8px] mb-2">
             {card.title}
           </h3>
 
@@ -249,7 +255,7 @@ const AboutPrivity = () => {
   return (
     <section
       id="about"
-      className="w-full bg-white py-16 px-2 md:px-20 lg:px-28 font-montserrat"
+      className="w-full bg-white py-16 px-2 md:px-20 lg:px-28  mt-4 font-montserrat"
     >
       <div className="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Second (duplicated) Right Image + Badge — MOBILE ONLY */}
@@ -282,7 +288,7 @@ const AboutPrivity = () => {
           </div>
         </div>
         {/* Left Content */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 -mt-2">
           <h2 className="md:text-[54px] text-[32px] font-[500] text-gray-900">
             About Privity
           </h2>

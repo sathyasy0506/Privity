@@ -42,7 +42,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="w-full bg-white md:py-0 py-10 px-6 md:px-20 font-montserrat">
+    <section className="w-full bg-white md:py-0 py-10 px-6 md:px-20 font-montserrat -mt-4">
       <div className="max-w-3xl mx-auto text-center">
         <div className="inline-block border border-red-300 text-[--color-primary] px-5 py-1 rounded-full text-sm font-medium mb-6">
           FAQ's

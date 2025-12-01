@@ -1,17 +1,12 @@
 // FeaturesAndHowItWorksMobile.jsx
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Arrow from "../../../assets/images/Arrow.svg";
 
-// icons/images (adjust paths if needed)
+// icons (adjust paths if needed)
 import premium from "../../../assets/icons/premium.png";
 import documentation from "../../../assets/icons/documentation.png";
 import support from "../../../assets/icons/support.png";
 import assistance from "../../../assets/icons/assistance.png";
-
-import premiumImage from "../../../assets/images/premium.png";
-import documentationImage from "../../../assets/images/documentation.png";
-import supportImage from "../../../assets/images/end_to_end.png";
-import assistanceImage from "../../../assets/images/personalized_assistance.png";
 
 /* Simple FeatureCard */
 const FeatureCard = ({ title, description, icon }) => {
@@ -37,41 +32,76 @@ const features = [
   {
     title: "Competitive premium pricing",
     description: "and set powerful intentions for your personal development.",
-    image: premiumImage,
     icon: premium,
   },
   {
     title: "Seamless documentation",
     description: "and set powerful intentions for your personal development.",
-    image: documentationImage,
     icon: documentation,
   },
   {
     title: "End-to-end claims support",
     description: "and set powerful intentions for your personal development.",
-    image: supportImage,
     icon: support,
   },
   {
     title: "Personalized assistance",
     description: "and set powerful intentions for your personal development.",
-    image: assistanceImage,
     icon: assistance,
   },
 ];
 
 export default function FeaturesAndHowItWorksMobile() {
+  // ref to the HOW IT WORKS section container
+  const howRef = useRef(null);
+
+  useEffect(() => {
+    const el = howRef.current;
+    if (!el) return;
+
+    // smaller factor => subtler lift. Adjust as needed (0.05 - 0.25)
+    const PARALLAX_FACTOR = 0.09;
+    let rafId = null;
+
+    function onScroll() {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect();
+        // we want to move the section slightly upward as user scrolls down
+        // compute how far the section is from top of viewport; center around 0
+        const viewportHeight =
+          window.innerHeight || document.documentElement.clientHeight;
+        // offset: negative when section moves up; normalise to [-1, 1]
+        const offsetFromCenter =
+          (rect.top - viewportHeight / 2) / (viewportHeight / 2);
+        // translateY amount
+        const translateY =
+          Math.max(-1, Math.min(1, offsetFromCenter)) * PARALLAX_FACTOR * 100; // px-ish
+        el.style.transform = `translateY(${translateY}px)`;
+      });
+    }
+
+    // initial call to position correctly
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <div className="md:hidden font-montserrat">
       {/* -----------------------------
           SECTION 1: Features (sticky, full screen)
           - overflow-auto so user can scroll inside the pinned area
          ----------------------------- */}
-      <section className="sticky top-0 h-screen w-full bg-white z-10 overflow-auto">
-        <div className="max-w-[980px] mx-auto px-6 py-8">
-
-
-          {/* Render features in order: card then image */}
+      <section className="sticky top-0 w-full bg-white z-10">
+        <div className="max-w-[980px] mx-auto px-6 py-8 -mt-8">
+          {/* Render features only (no image) */}
           <div className="flex flex-col gap-6 pb-8">
             {features.map((f, idx) => (
               <div key={idx} className="flex flex-col gap-3">
@@ -80,20 +110,9 @@ export default function FeaturesAndHowItWorksMobile() {
                   description={f.description}
                   icon={f.icon}
                 />
-                <img
-                  src={f.image}
-                  alt={f.title}
-                  className="rounded-3xl object-cover w-full h-48"
-                  loading="lazy"
-                />
+                {/* removed image card as requested */}
               </div>
             ))}
-          </div>
-
-          {/* A small footer inside the sticky area so user can scroll to bottom easily */}
-          <div className="mt-6 text-center text-sm text-gray-500">
-            Scroll up/down to view all features. Continue scrolling to see how
-            it works.
           </div>
         </div>
       </section>
@@ -105,7 +124,8 @@ export default function FeaturesAndHowItWorksMobile() {
           SECTION 2: How It Works (sticky top-0 with higher z so it overlaps)
          ----------------------------- */}
       <section
-        className="sticky top-0 w-full bg-[#E2D0CC] py-10 px-6 z-20 overflow-visible"
+        ref={howRef}
+        className="sticky top-0 w-full bg-[#E2D0CC] py-10 px-6 z-20 overflow-visible transition-transform will-change-transform"
         style={{
           borderTopLeftRadius: "28px",
           borderTopRightRadius: "28px",
