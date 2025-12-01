@@ -59,7 +59,9 @@ const FeatureCard = ({ title, description, icon }) => {
       </div>
 
       {/* Text */}
-      <h3 className="text-xl font-semibold text-[--color-primary] mb-2">{title}</h3>
+      <h3 className="text-xl font-semibold text-[--color-primary] mb-2">
+        {title}
+      </h3>
       <p className="text-gray-600 leading-relaxed">{description}</p>
     </div>
   );
@@ -69,7 +71,7 @@ const FeaturesAndHowItWorks = () => {
   return (
     <div className="font-montserrat">
       {/* Features Section */}
-      <section className="sticky top-0 w-full h-screen max-w-[1320px] mx-auto px-6  grid grid-cols-1 md:grid-cols-3 gap-2 z-10">
+      <section className="sticky top-0 w-full h-screen max-w-[1320px] mx-auto px-6   -mt-8 py-10  grid grid-cols-1 md:grid-cols-3 gap-2 z-10">
         {/* Row 1 */}
         <div className="flex flex-col gap-6 md:col-span-3 md:grid md:grid-cols-4">
           <FeatureCard
@@ -99,7 +101,7 @@ const FeaturesAndHowItWorks = () => {
           <img
             src={features[2].image}
             alt="Feature"
-            className="rounded-3xl object-cover w-full h-full"
+            className="rounded-3xl object-cover w-full h-full "
           />
           <FeatureCard
             title={features[2].title}
@@ -151,7 +153,7 @@ const FeaturesAndHowItWorks = () => {
               <img
                 src={Arrow}
                 alt="Arrow"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain "
               />
             </div>
           </div>

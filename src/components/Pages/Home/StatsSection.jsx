@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 
 const StatsSection = () => {
   return (
-    <section className="w-full flex justify-center py-12 bg-white font-montserrat p-2">
+    <section className="w-full flex justify-center py-12 bg-white font-montserrat p-2 ">
       <div className="flex flex-row items-center justify-between border border-[var(--color-primary)] rounded-[80px] md:rounded-full px-4 md:px-16 py-8 w-full max-w-[1320px] gap-4 md:gap-0">
         {/* Happy Customers */}
         <div className="flex flex-col items-center text-center flex-1">

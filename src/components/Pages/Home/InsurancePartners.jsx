@@ -56,7 +56,7 @@ const InsurancePartners = () => {
   ];
 
   return (
-    <section className="w-full bg-white  px-6 md:px-12 lg:px-24 text-center font-montserrat p-16">
+    <section className="w-full bg-white  px-6 md:px-12 lg:px-24 text-center font-montserrat md:pb-16 pt-16  -pb-16">
       <p className="text-[var(--color-primary)] mb-3 text-[17px] font-[500] tracking-wide flex items-center justify-center gap-2">
         <span className="w-2 h-2 bg-[var(--color-primary)] rounded-sm"></span>
         Partners

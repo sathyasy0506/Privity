@@ -133,7 +133,7 @@ export default function TestimonialsAndWhyChooseUsw() {
   return (
     <div className="font-montserrat">
       {/* SECTION 1: Testimonials (Sticky Parallax Section) */}
-      <section className="sticky top-0 h-screen bg-white flex items-center justify-center overflow-hidden z-10">
+      <section className="sticky top-0 h-screen  flex items-center justify-center overflow-hidden z-10">
         <div className="max-w-[1320px] ">
           <h1 className="md:text-[52px] text-[32px] md:font-[500] font-[600] leading-[52px] text-gray-900 mb-16 font-montserrat md:text-left text-center">
             Hear it from our users

@@ -47,11 +47,11 @@ const Home = () => {
         <AboutPrivity />
         <Achievement />
         {/* Web version */}{" "}
-        <div className="block md:hidden">
+        {/* <div className="block md:hidden">
           <TestimonialsAndWhyChooseUs />
-        </div>
+        </div> */}
         {/* Mobile version */}
-        <div className="hidden md:block">
+        <div className="">
           <TestimonialsAndWhyChooseUsw />
         </div>
         <InsuranceQuote />
