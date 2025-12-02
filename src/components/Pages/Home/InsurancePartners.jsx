@@ -24,6 +24,9 @@ import logo21 from "../../../assets/images/insurance_company_logos_21.png";
 import logo22 from "../../../assets/images/insurance_company_logos_22.png";
 import logo23 from "../../../assets/images/insurance_company_logos_23.png";
 import logo24 from "../../../assets/images/insurance_company_logos_24.png";
+import logo25 from "../../../assets/images/insurance_company_logos_25.png";
+import logo26 from "../../../assets/images/insurance_company_logos_26.png";
+import logo27 from "../../../assets/images/insurance_company_logos_27.webp";
 
 const InsurancePartners = () => {
   const generalInsurance = [
@@ -43,16 +46,18 @@ const InsurancePartners = () => {
     logo19,
     logo23,
     logo13,
+    logo15,
+    logo25,
   ];
 
-  const lifeInsurance = [logo22, logo24, logo16];
+  const lifeInsurance = [logo16, logo26, logo22, logo24];
 
-  const standaloneInsurance = [logo12, logo15, logo17, logo20, logo21];
+  const standaloneInsurance = [logo12, logo27, logo17, logo20, logo21];
 
   const categories = [
     { title: "General Insurance", logos: generalInsurance },
     { title: "Life Insurance", logos: lifeInsurance },
-    { title: "Standalone Insurance", logos: standaloneInsurance },
+    { title: "Standalone Health Insurance", logos: standaloneInsurance },
   ];
 
   return (

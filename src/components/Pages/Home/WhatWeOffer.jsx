@@ -20,7 +20,7 @@ import gadgetR from "../../../assets/icons/gadget_r.png";
 
 import lifeImage from "../../../assets/images/life.png";
 import healthImage from "../../../assets/images/health.png";
-import motorImage from "../../../assets/images/motor.png";
+import motorImage from "../../../assets/images/motor.jpg";
 import travelImage from "../../../assets/images/travel.png";
 import fireImage from "../../../assets/images/fire.png";
 import marineImage from "../../../assets/images/marine.png";
