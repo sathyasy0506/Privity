@@ -147,7 +147,7 @@ export default function TestimonialsAndWhyChooseUs() {
 
   return (
     // OUTER WRAPPER provides scrollable space for parallax: > 100vh
-    <div className="font-montserrat relative min-h-[160vh]">
+    <div className="font-montserrat relative min-h-[40vh]">
       {/* SECTION 1: Testimonials — sticky but not full viewport height */}
       <section className="sticky top-0 h-[60vh] flex items-center justify-center overflow-visible z-20">
         <div className="max-w-[1320px] w-full px-6 md:px-0">
@@ -353,7 +353,7 @@ export default function TestimonialsAndWhyChooseUs() {
           </div>
         </div>
 
-        {/* Right Section (placeholder to fill visual balance) */}
+        {/* Right Section (placeholder to fill visual balance)
         <div className="md:w-4/7 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-4 rounded-2xl bg-white/5">
@@ -401,11 +401,11 @@ export default function TestimonialsAndWhyChooseUs() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
 
       {/* Spacer area after the sticky sections so content below flows naturally */}
-      <div className="h-20" />
+      <div className="h-0" />
     </div>
   );
 }
