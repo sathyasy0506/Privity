@@ -13,6 +13,7 @@ const Header = ({ sticky = true }) => {
   const navigation = [
     { name: "About", path: "/", sectionId: "about" },
     { name: "Services", path: "/", sectionId: "what-we-offer" },
+    { name: "Blogs", path: "/blogs" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -101,8 +102,8 @@ const Header = ({ sticky = true }) => {
                   key={item.name}
                   href={item.path}
                   onClick={(e) => handleNavClick(e, item)}
-                  className={`relative text-black font-light text-[18px] tracking-wide transition-all group hover:text-[--color-primary] ${
-                    isActive(item.path) ? "text-black" : ""
+                  className={`relative text-black text-[18px] tracking-wide transition-all group hover:text-[--color-primary] ${
+                    isActive(item.path) ? "font-medium" : "font-light"
                   }`}
                 >
                   {item.name}
@@ -111,8 +112,8 @@ const Header = ({ sticky = true }) => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`relative text-black font-light text-[18px] tracking-wide transition-all group hover:text-[--color-primary] ${
-                    isActive(item.path) ? "text-black" : ""
+                  className={`relative text-black text-[18px] tracking-wide transition-all group hover:text-[--color-primary] ${
+                    isActive(item.path) ? "font-medium" : "font-light"
                   }`}
                 >
                   {item.name}
@@ -174,7 +175,7 @@ const Header = ({ sticky = true }) => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-2 rounded-lg border border-gray-200 bg-white shadow-md py-4 px-5 space-y-4 animate-fade-in-up font-montserrat">
             {navigation
-              .filter((item) => item.name !== "Contact") // 🔴 hide Contact only in mobile
+              .filter((item) => item.name !== "Contact")
               .map((item) =>
                 item.sectionId ? (
                   <button
@@ -183,7 +184,9 @@ const Header = ({ sticky = true }) => {
                       handleNavClick(e, item);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="block w-full text-center py-2 rounded-md font-medium text-black hover:text-[--color-primary] transition"
+                    className={`block w-full text-center py-2 rounded-md font-montserrat ${
+                      isActive(item.path) ? "font-medium" : "font-light"
+                    } text-black hover:text-[--color-primary] transition`}
                   >
                     {item.name}
                   </button>
@@ -192,12 +195,15 @@ const Header = ({ sticky = true }) => {
                     key={item.name}
                     to={item.path}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-center py-2 rounded-md font-medium text-black hover:text-[--color-primary] transition"
+                    className={`block text-center py-2 rounded-md font-montserrat ${
+                      isActive(item.path) ? "font-medium" : "font-light"
+                    } text-black hover:text-[--color-primary] transition`}
                   >
                     {item.name}
                   </Link>
                 )
               )}
+
             <button className="w-full px-4 py-2 bg-[--color-primary] text-white text-lg font-montserrat font-normal rounded-full border-2 border-[--color-primary] transition-colors duration-300 ease-in-out transform hover:-translate-y-1 hover:bg-white hover:text-[--color-primary]">
               Get Started
             </button>
