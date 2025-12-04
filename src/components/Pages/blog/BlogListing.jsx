@@ -93,8 +93,6 @@ export function BlogListing({ onBlogClick }) {
           image_url: post.featured_image,
           categories: categoryNames, // array of category names (strings)
           category: primaryCategory, // used on card pill (never "Featured" if another exists)
-          author: post.author?.name || "",
-          author_avatar: null, // not provided by API, will fallback to ui-avatars
           published_at: post.date, // "YYYY-MM-DD"
           read_time: readTime, // number (minutes)
           slug,
@@ -236,28 +234,6 @@ export function BlogListing({ onBlogClick }) {
                 <p className="text-lg text-gray-200 mb-6 max-w-2xl line-clamp-2">
                   {currentFeaturedBlog.excerpt}
                 </p>
-
-                <div className="flex items-center gap-4">
-                  <img
-                    src={
-                      currentFeaturedBlog.author_avatar ||
-                      `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                        currentFeaturedBlog.author
-                      )}&background=101827&color=fff`
-                    }
-                    alt={currentFeaturedBlog.author}
-                    className="w-12 h-12 rounded-full ring-2 ring-white"
-                  />
-
-                  <div>
-                    <p className="font-semibold text-white">
-                      {currentFeaturedBlog.author}
-                    </p>
-                    <p className="text-sm text-gray-300">
-                      {currentFeaturedBlog.read_time} min read
-                    </p>
-                  </div>
-                </div>
               </div>
 
               {/* Dots for multiple featured blogs */}

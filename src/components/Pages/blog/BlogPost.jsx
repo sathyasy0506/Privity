@@ -60,8 +60,7 @@ export function BlogPost({ slug, onBack }) {
           image_url: post.featured_image,
           categories: categoryNames,
           category: primaryCategory,
-          author: post.author?.name || "",
-          author_avatar: null,
+
           published_at: post.date, // "YYYY-MM-DD"
           read_time: readTime,
           slug: slugFromLink,
@@ -132,22 +131,7 @@ export function BlogPost({ slug, onBack }) {
               {blog.title}
             </h1>
             <div className="flex flex-wrap items-center gap-6 text-white/90">
-              <div className="flex items-center gap-3">
-                <img
-                  src={
-                    blog.author_avatar ||
-                    `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                      blog.author
-                    )}&background=101827&color=fff`
-                  }
-                  alt={blog.author}
-                  className="w-14 h-14 rounded-full ring-2 ring-white/30"
-                />
-                <div>
-                  <p className="font-semibold text-white">{blog.author}</p>
-                  <p className="text-sm text-white/80">Author</p>
-                </div>
-              </div>
+
 
               <div className="h-12 w-px bg-white/30 hidden md:block" />
 
@@ -239,30 +223,6 @@ export function BlogPost({ slug, onBack }) {
           </div>
         </article>
 
-        <div className="mt-16 pt-12 border-t border-gray-200">
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 md:p-12">
-            <div className="flex items-center gap-6">
-              <img
-                src={
-                  blog.author_avatar ||
-                  `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                    blog.author
-                  )}&background=101827&color=fff`
-                }
-                alt={blog.author}
-                className="w-24 h-24 rounded-full ring-4 ring-white shadow-lg"
-              />
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Written by {blog.author}
-                </h3>
-                <p className="text-gray-600">
-                  Passionate writer sharing insights and stories that matter.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

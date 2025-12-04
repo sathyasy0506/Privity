@@ -45,23 +45,6 @@ export function BlogCard({ blog, onClick }) {
         <p className="text-gray-600 line-clamp-3 mb-4 leading-relaxed">
           {blog.excerpt}
         </p>
-
-        <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-          <img
-            src={
-              blog.author_avatar ||
-              `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                blog.author
-              )}&background=101827&color=fff`
-            }
-            alt={blog.author}
-            className="w-10 h-10 rounded-full object-cover ring-2 ring-gray-100"
-          />
-          <div>
-            <p className="font-semibold text-gray-900">{blog.author}</p>
-            <p className="text-sm text-gray-500">Author</p>
-          </div>
-        </div>
       </div>
     </article>
   );
