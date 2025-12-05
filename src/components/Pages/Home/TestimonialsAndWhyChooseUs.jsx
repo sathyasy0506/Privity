@@ -11,42 +11,26 @@ import loyal from "../../../assets/icons/loyal.png";
 const testimonials = [
   {
     id: 1,
-    name: "Makayla Johnson",
-    text: '"Privity has transformed the way I think about my life. Highly recommend!"',
+    name: "verified client",
+    text: "They explained every detail clearly, no hidden costs. I finally feel confident about my insurance decisions.",
     image:
       "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
     hasBackground: true,
   },
   {
     id: 2,
-    name: "Stephanie Jackson",
-    text: "Dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown source.",
+    name: "verified client",
+    text: "Quick response, honest advice, and smooth renewal process. This is how insurance should feel.",
     image:
       "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400",
     hasBackground: false,
   },
   {
     id: 3,
-    name: "Samantha Vier",
-    text: '"Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development."',
+    name: "verified client",
+    text: "They told me exactly what I needed for my claim, and once submitted, the reimbursement was processed without any stress. Their support made a tough time much easier.",
     image:
       "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400",
-    hasBackground: false,
-  },
-  {
-    id: 4,
-    name: "Liam Carter",
-    text: '"This platform has completely changed my workflow. Incredible!"',
-    image:
-      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400",
-    hasBackground: false,
-  },
-  {
-    id: 5,
-    name: "Olivia Brown",
-    text: '"Amazing service and excellent support. I feel more productive than ever!"',
-    image:
-      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
     hasBackground: false,
   },
 ];
@@ -346,9 +330,8 @@ export default function TestimonialsAndWhyChooseUs() {
             </p>
             <div className="w-44 border-t border-gray-400 mb-6" />
             <h2 className="md:text-[44px] text-[26px] font-small md:leading-[57.2px]">
-              Extensive presence across Kerala, including <br />
-              Trivandrum, Kozhikode, Kollam, Alappuzha, Ernakulam, <br />
-              Kasaragod, and more
+              A trusted insurance support network available across India,
+              wherever you need us.
             </h2>
           </div>
         </div>

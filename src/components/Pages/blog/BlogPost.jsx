@@ -4,7 +4,6 @@ import {
   Clock,
   Calendar,
   Share2,
-  Bookmark,
   Twitter,
   Facebook,
   Linkedin,
@@ -131,8 +130,6 @@ export function BlogPost({ slug, onBack }) {
               {blog.title}
             </h1>
             <div className="flex flex-wrap items-center gap-6 text-white/90">
-
-
               <div className="h-12 w-px bg-white/30 hidden md:block" />
 
               <div className="flex items-center gap-3">
@@ -163,8 +160,8 @@ export function BlogPost({ slug, onBack }) {
           <p className="text-xl text-gray-700 italic">{blog.excerpt}</p>
         </div>
 
-        {/* Floating share bar */}
-        <div className="sticky top-8 float-right ml-8 mb-8">
+        {/* Share bar (same position, not fixed/sticky) */}
+        <div className="float-right ml-8 mb-8">
           <div className="flex flex-col gap-3 bg-gray-50 p-4 rounded-2xl shadow-sm">
             <button
               onClick={() => setShowShareMenu(!showShareMenu)}
@@ -207,13 +204,6 @@ export function BlogPost({ slug, onBack }) {
                 </a>
               </div>
             )}
-
-            <button
-              className="p-3 hover:bg-amber-100 rounded-full transition-colors group"
-              title="Bookmark"
-            >
-              <Bookmark className="w-5 h-5 text-gray-700 group-hover:text-amber-600" />
-            </button>
           </div>
         </div>
 
@@ -222,7 +212,6 @@ export function BlogPost({ slug, onBack }) {
             {blog.content}
           </div>
         </article>
-
       </div>
     </div>
   );
