@@ -21,7 +21,7 @@ const StatsSection = () => {
         {/* Years */}
         <div className="flex flex-col items-center text-center flex-1">
           <h2 className="text-[20px] md:text-[64px] font-light text-[var(--color-primary)]">
-            16+
+            17+
           </h2>
           <p className="text-gray-800 text-[10px] md:text-[18px] mt-2 leading-snug">
             Years of Experience. Privity started

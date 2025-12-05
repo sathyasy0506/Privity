@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import banner1 from "../../../assets/images/banner_1.jpeg";
-import banner2 from "../../../assets/images/banner_2.jpeg";
+import banner2 from "../../../assets/images/banner_2.png";
 
 import mbanner1 from "../../../assets/images/mbanner_1.jpeg";
-import mbanner2 from "../../../assets/images/mbanner_2.jpeg";
+import mbanner2 from "../../../assets/images/mbanner_2.png";
 
 export default function HeroBanner() {
   const desktopBanners = [banner1, banner2];
@@ -37,7 +37,7 @@ export default function HeroBanner() {
 
   return (
     <div className="relative w-full overflow-hidden md:mb-0 -mb-10">
-      {banners.map((banner, index) => (  
+      {banners.map((banner, index) => (
         <div
           key={index}
           className={`transition-opacity duration-1000 ${

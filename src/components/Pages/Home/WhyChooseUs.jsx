@@ -1,4 +1,3 @@
-
 import React from "react";
 
 // ICONS
@@ -10,7 +9,7 @@ import loyal from "../../../assets/icons/loyal.png";
 // WHY CHOOSE US DATA
 const features = [
   {
-    title: "A strong network of 300+ Point of Sales (POS) agent",
+    title: "A strong network of 1100+ Point of Sales (POS) agent",
     description:
       "Protect your biggest investment with our reliable, comprehensive, and trusted home insurance policies.",
     icon: network,
@@ -51,9 +50,8 @@ export default function WhyChooseUs() {
           </p>
           <div className="w-44 border-t border-gray-400 mb-6"></div>
           <h2 className="md:text-[44px] text-[26px] font-small md:leading-[57.2px]">
-            Extensive presence across Kerala, including <br />
-            Trivandrum, Kozhikode, Kollam, Alappuzha, Ernakulam, <br />
-            Kasaragod, and more
+            A trusted insurance support network available across India, wherever
+            you need us.
           </h2>
         </div>
         <div className="pt-2">

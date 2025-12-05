@@ -48,7 +48,7 @@ const InfoCards = () => {
   const cards = [
     {
       icon: network,
-      title: "A strong network of 300+ Point of Sales (POS) agent",
+      title: "A strong network of 1100+ Point of Sales (POS) agent",
       description:
         "Protect your biggest investment with our reliable, comprehensive, and trusted home insurance policies.",
     },
@@ -270,21 +270,7 @@ const AboutPrivity = () => {
             ></div>
 
             {/* Badge OUTSIDE image */}
-            <div
-              className="absolute -bottom-4 flex flex-col gap-[40px] right-1 z-50 bg-[#FEFFFF] shadow-md rounded-[20px]
-    px-4 py-4 w-42 min-h-[5px]"
-            >
-              <p className="text-gray-900 text-[16px] font-[400] leading-4">
-                Certified Batch
-              </p>
-              <p className="text-[var(--color-primary)] text-[20px] font-[600] leading-5">
-                Privity
-              </p>
-              <p className="text-gray-800 text-[14px] font-[500] leading-7">
-                Certified <br />
-                Professional 2025
-              </p>
-            </div>
+
           </div>
         </div>
         {/* Left Content */}
@@ -302,7 +288,7 @@ const AboutPrivity = () => {
             <div className="hidden md:flex flex-col items-start gap-3">
               {/* Counter with fixed width */}
               <Counter
-                target={12}
+                target={17}
                 duration={2}
                 className="text-[var(--color-primary)] font-bold text-[110px] leading-[100px]"
               />
@@ -316,7 +302,7 @@ const AboutPrivity = () => {
 
             <div className="lg:hidden flex flex-row lg:flex-col items-start gap-3 w-full">
               <Counter
-                target={12}
+                target={17}
                 duration={2}
                 className="
     text-[var(--color-primary)] font-bold
@@ -364,19 +350,7 @@ const AboutPrivity = () => {
               }}
             ></div>
 
-            <div className="absolute bottom-20 -right-10 bg-[#FEFFFF] shadow-lg rounded-2xl px-8 py-6 w-56">
-              <p className="text-gray-800 text-[20px] font-normal leading-[36px] mb-[70px]">
-                Certified Batch
-              </p>
-              <p className="text-[var(--color-primary)] text-[28px] font-semibold leading-[35.84px] mt-1">
-                Privity
-              </p>
-              <p className="text-gray-800 text-[18px] font-medium leading-[32.4px] mt-1">
-                Certified
-                <br />
-                Professional 2025
-              </p>
-            </div>
+
           </div>
         </div>
       </div>

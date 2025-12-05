@@ -226,14 +226,7 @@ export default function FeaturesAndHowItWorksMobile() {
         </div>
       </section>
 
-      {/* extra content so the page continues below the overlap */}
-      <div className="bg-white px-6 py-12">
-        <div className="max-w-[980px] mx-auto">
-          <p className="text-gray-600">
-            More content below — keep scrolling to observe the overlap behavior.
-          </p>
-        </div>
-      </div>
+   
     </div>
   );
 }
