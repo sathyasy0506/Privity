@@ -24,7 +24,7 @@ const features = [
     icon: documentation,
   },
   {
-    title: "End-to-end claims support",
+      title: "Seamless end to end claims support",
     description: "and set powerful intentions for your personal development.",
     image: supportImage,
     icon: support,

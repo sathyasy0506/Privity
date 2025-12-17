@@ -6,15 +6,9 @@ const defaultLocations = [
   {
     state: "KERALA",
     items: [
-      { place: "Vyttila", phone: "+919567231111" },
-      { place: "Kakkanad", phone: "+917558991111" },
-      { place: "Edappally", phone: "+917559841111" },
-      { place: "Kottayam", phone: "+917558992222" },
-      { place: "Trivandrum", phone: "+919562353333" },
-      { place: "Calicut", phone: "+919747194444" },
-      { place: "Thrissur", phone: "+919995195555" },
-      { place: "Kollam", phone: "+919744796666" },
-      { place: "Kannur", phone: "+919496246666" },
+      { place: "South", phone: "+919961047677" },
+      { place: "Central", phone: "+919507332211" },
+      { place: "North", phone: "+919946780001" },
     ],
   },
 ];
@@ -42,7 +36,7 @@ const LocationModal = ({ isOpen, onClose, locations = defaultLocations }) => {
     >
       <div className="bg-white rounded-2xl w-[94%] max-w-lg shadow-xl animate-scaleIn max-h-[80vh] flex flex-col">
         <div className="flex justify-between items-center p-4 border-b">
-          <h3 className="text-xl font-bold">Our Locations</h3>
+          <h3 className="text-xl font-bold"> Contact Number</h3>
           <button
             onClick={onClose}
             className="p-2 rounded-md hover:bg-gray-100"
@@ -53,13 +47,11 @@ const LocationModal = ({ isOpen, onClose, locations = defaultLocations }) => {
         </div>
 
         <div className="px-4 py-3 overflow-y-auto space-y-4">
-          <p className="text-sm text-gray-600">
-            Tap a phone number to call the nearest branch.
-          </p>
+
 
           {locations.map((loc) => (
             <div key={loc.state}>
-              <h4 className="text-lg font-semibold mb-2">{loc.state}</h4>
+              {/* <h4 className="text-lg font-semibold mb-2">{loc.state}</h4> */}
               <div className="grid grid-cols-1 gap-2 text-gray-700">
                 {loc.items.map((it) => (
                   <div
@@ -90,14 +82,14 @@ const LocationModal = ({ isOpen, onClose, locations = defaultLocations }) => {
           ))}
         </div>
 
-        <div className="p-4 border-t flex justify-end">
+        {/* <div className="p-4 border-t flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-md border hover:bg-gray-100"
           >
             Close
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

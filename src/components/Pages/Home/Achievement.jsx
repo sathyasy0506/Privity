@@ -13,7 +13,7 @@ function Achievement() {
         </h2>
         <p className="max-w-[450px] text-gray-600 text-base mt-6 lg:mt-0 text-[15px] font-[400] leading-[28.8px]">
           Our service is designed exclusively to support humans on their journey
-          to self-discovery, empowerment, and goal achievement.
+          to self discovery, empowerment, and goal achievement.
         </p>
       </div>
 
@@ -26,8 +26,8 @@ function Achievement() {
             <h3 className="text-[48px] font-[500] mb-2">99%</h3>
             <p className="text-[18px] font-[500] mb-3">Claim Settle</p>
             <p className="text-[14px] font-[300] opacity-90 leading-relaxed">
-              Fast and hassle-free claim processing — we make sure your claims
-              are settled quickly and reliably.
+              Quick and hassle-free claim support, ensuring a smooth and
+              reliable settlement process.
             </p>
           </div>
 
@@ -36,8 +36,8 @@ function Achievement() {
             <h3 className="text-[48px] font-[500] mb-2">24/7</h3>
             <p className="text-[18px] font-[500] mb-3">Support</p>
             <p className="text-[14px] font-[300] opacity-90 leading-relaxed">
-              Round-the-clock assistance for all your insurance needs, so help
-              is always just a call or click away.
+              Round-the-clock assistance for all your insurance needs, with help
+              available whenever you need it.
             </p>
           </div>
         </div>

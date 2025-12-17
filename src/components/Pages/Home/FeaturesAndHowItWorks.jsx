@@ -25,7 +25,7 @@ const features = [
     icon: documentation,
   },
   {
-    title: "End-to-end claims support",
+    title: "Seamless end to end claims support",
     description: "and set powerful intentions for your personal development.",
     image: supportImage,
     icon: support,
@@ -141,11 +141,11 @@ const FeaturesAndHowItWorks = () => {
               1
             </h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
-              Choose Your Service
+              Select Your Coverage
             </h4>
             <p className="text-gray-500 leading-relaxed text-[16px] md:text-base">
-              Select the insurance type that fits your needs — life, health,
-              motor, travel, or business coverage.
+              Choose an insurance solution aligned with your requirements, from
+              life and health to motor, travel, and business coverage.
             </p>
 
             {/* Arrow */}
@@ -164,11 +164,11 @@ const FeaturesAndHowItWorks = () => {
               2
             </h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
-              Pick Your Plan
+              Choose the Right Plan
             </h4>
             <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-              Compare options and choose a plan tailored to your budget and
-              goals, with clear terms and no hidden costs.
+              Review your options and select a plan that matches your budget and
+              objectives, with clear terms and complete transparency.
             </p>
 
             {/* Arrow */}
@@ -187,11 +187,11 @@ const FeaturesAndHowItWorks = () => {
               3
             </h3>
             <h4 className="text-[24px] font-[500] text-gray-800 mb-3">
-              Enjoy a Secured Life
+              Stay Protected{" "}
             </h4>
             <p className="text-gray-500 leading-relaxed text-sm md:text-base">
-              Relax with complete peace of mind, knowing you and your loved ones
-              are protected.
+              Enjoy peace of mind knowing you and your loved ones are well
+              covered, today and in the future.
             </p>
           </div>
         </div>

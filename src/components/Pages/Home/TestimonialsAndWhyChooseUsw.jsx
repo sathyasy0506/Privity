@@ -11,24 +11,24 @@ import loyal from "../../../assets/icons/loyal.png";
 const testimonials = [
   {
     id: 1,
-    name: "verified client",
-    text: "They explained every detail clearly, no hidden costs. I finally feel confident about my insurance decisions.",
+    name: "Aravind Nair",
+    text: "Thank you, Mr. Bijo. I truly appreciate your dedicated efforts in resolving this issue. I am hopeful that the upcoming claim will also be approved soon. My trust in your office and your team’s commitment is now at a highly satisfactory level.",
     image:
       "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
     hasBackground: true,
   },
   {
     id: 2,
-    name: "verified client",
-    text: "Quick response, honest advice, and smooth renewal process. This is how insurance should feel.",
+    name: "Subin Bhaskaran",
+    text: "It was a very good experience dealing with the team for medical insurance. I have spoken to several agents and agencies in the past, but it was only after connecting with Jacob from Privity through a known contact that I truly understood the process and available options. Instead of pushing a policy, he took the time to explain everything clearly over the call and patiently waited until I was fully comfortable with the details. I’m extremely happy with the overall experience. Thank you to Jacob and the entire team.",
     image:
       "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400",
     hasBackground: false,
   },
   {
     id: 3,
-    name: "verified client",
-    text: "They told me exactly what I needed for my claim, and once submitted, the reimbursement was processed without any stress. Their support made a tough time much easier.",
+    name: "Jerin Kavanad",
+    text: "Recently I have taken Medical Insurance from Privity. Their service is very good especially Jacob & Kavitha, because they have helped me to choose Right One. So I suggest Privity to all who need Medical Insurance.",
     image:
       "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400",
     hasBackground: false,
@@ -44,13 +44,12 @@ const features = [
     icon: network,
   },
   {
-    title: "Seamless end-to-end claims support",
+    title: "Seamless end to end claims support",
     description: "Get your designs done quickly without delays in 24 hours",
     icon: endtoend,
   },
   {
-    title:
-      "Operate solely on statutory brokerage — absolutely no hidden charges",
+    title: "Operate solely on statutory brokerage absolutely no hidden charges",
     description: "Get your designs done quickly without delays in 24 hours",
     icon: hidden,
   },

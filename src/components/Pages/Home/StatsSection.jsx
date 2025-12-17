@@ -35,7 +35,7 @@ const StatsSection = () => {
 
         {/* Star Rating */}
         <div className="flex flex-col items-center text-center flex-1">
-          <h2 className="text-[20px] md:text-[64px] font-light text-[var(--color-primary)] flex items-center gap-2">
+          <h2 className="text-[20px] md:text-[64px] font-[500] text-[var(--color-primary)] flex items-center gap-2">
             4.8
             <Star
               fill="var(--color-primary)"

@@ -40,7 +40,7 @@ const features = [
     icon: documentation,
   },
   {
-    title: "End-to-end claims support",
+    title: "Seamless end to end claims support",
     description: "and set powerful intentions for your personal development.",
     icon: support,
   },
@@ -149,11 +149,11 @@ export default function FeaturesAndHowItWorksMobile() {
                 1
               </h3>
               <h4 className="text-[16px] font-[500] text-gray-800 mb-2">
-                Choose Your Service
+                Select Your Coverage{" "}
               </h4>
               <p className="text-gray-500 text-[15px]">
-                Select the insurance type that fits your needs — life, health,
-                motor, travel, or business coverage.
+                Choose an insurance solution aligned with your requirements,
+                from life and health to motor, travel, and business coverage.
               </p>
             </div>
 
@@ -163,11 +163,11 @@ export default function FeaturesAndHowItWorksMobile() {
                 2
               </h3>
               <h4 className="text-[16px] font-[500] text-gray-800 mb-2">
-                Pick Your Plan
+                Choose the Right Plan{" "}
               </h4>
               <p className="text-gray-500 text-[15px]">
-                Compare options and choose a plan tailored to your budget and
-                goals, with clear terms and no hidden costs.
+                Review your options and select a plan that matches your budget
+                and objectives, with clear terms and complete transparency.
               </p>
             </div>
 
@@ -177,11 +177,11 @@ export default function FeaturesAndHowItWorksMobile() {
                 3
               </h3>
               <h4 className="text-[16px] font-[500] text-gray-800 mb-2">
-                Enjoy a Secured Life
+                Stay Protected{" "}
               </h4>
               <p className="text-gray-500 text-[15px]">
-                Relax with complete peace of mind, knowing you and your loved
-                ones are protected.
+                Enjoy peace of mind knowing you and your loved ones are well
+                covered, today and in the future.
               </p>
             </div>
 
@@ -225,8 +225,6 @@ export default function FeaturesAndHowItWorksMobile() {
           </div>
         </div>
       </section>
-
-   
     </div>
   );
 }

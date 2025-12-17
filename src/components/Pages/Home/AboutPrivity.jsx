@@ -54,13 +54,13 @@ const InfoCards = () => {
     },
     {
       icon: endtoend,
-      title: "Seamless end-to-end claims support",
+      title: "Seamless end to end claims support",
       description: "Get your designs done quickly without delays in 24 hours",
     },
     {
       icon: hidden,
       title:
-        "Operate solely on statutory brokerage — absolutely no hidden charges",
+        "Operate solely on statutory brokerage absolutely no hidden charges",
       description: "Get your designs done quickly without delays in 24 hours",
     },
     {
@@ -270,7 +270,18 @@ const AboutPrivity = () => {
             ></div>
 
             {/* Badge OUTSIDE image */}
-
+            <div
+              className="absolute -bottom-4 flex flex-col gap-[40px] right-1 z-50 bg-[#FEFFFF] shadow-md rounded-[20px]
+    px-4 py-4 w-42 min-h-[5px]"
+            >
+              <p className="text-[var(--color-primary)] text-[20px] font-[600] leading-5">
+                Privity
+              </p>
+              <p className="text-gray-800 text-[14px] font-[500] leading-7">
+                Certified <br />
+                Professional Since 2008
+              </p>
+            </div>
           </div>
         </div>
         {/* Left Content */}
@@ -326,14 +337,14 @@ const AboutPrivity = () => {
 
               <p className="text-gray-500 text-[15px] font-[400] leading-relaxed mb-4 text-justify">
                 Privity Insurance Brokers, based in Kochi, Kerala, is a licensed
-                and IRDAI approved direct insurance broker offering a complete
-                spectrum of insurance services. Integrity Our team comprises
-                experienced and qualified insurance professionals committed to
-                safeguarding your interests from policy acquisition to post sale
-                support and claims management. <br />
-                We are more than brokers, we are your insurance advocates,
-                ensuring you receive the most competitive rates, appropriate
-                coverage, and seamless service.
+                and IRDAI-approved direct insurance broker offering a
+                comprehensive range of insurance solutions. Our team of
+                experienced and qualified professionals is committed to
+                protecting your interests at every stage, from policy selection
+                to post-sale support and claims management. <br /> <br />
+                More than just brokers, we act as your insurance advocates,
+                ensuring you receive the right coverage, competitive pricing,
+                and a smooth and dependable service experience.
               </p>
             </div>
           </div>
@@ -350,7 +361,16 @@ const AboutPrivity = () => {
               }}
             ></div>
 
-
+            <div className="absolute bottom-20 -right-10 bg-[#FEFFFF] shadow-lg rounded-2xl px-8 py-6 w-56">
+              <p className="text-[var(--color-primary)] text-[28px] font-semibold leading-[35.84px] mt-1">
+                Privity
+              </p>
+              <p className="text-gray-800 text-[18px] font-medium leading-[32.4px] mt-1">
+                Certified
+                <br />
+                Professional Since 2008
+              </p>
+            </div>
           </div>
         </div>
       </div>

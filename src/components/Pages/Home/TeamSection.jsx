@@ -9,14 +9,14 @@ export default function TeamSection() {
       name: "Dr. J Retnakumar",
       role: "Chairman",
       description:
-        "Dr. J Retnakumar, Chairman, brings over 25 years of experience in the insurance sector and is known for his positive demeanor and “can do” spirit. He served as Head of Oman Operations at New India Assurance Co. Ltd., leading it to become the top foreign insurance brand in Oman in 2009. An award-winning leader, he has designed innovative insurance covers and safety campaigns in India and Oman. He is an Associate of the Insurance Institute of India and holds a CTP from AIMS, London. His visionary leadership continues to drive growth, innovation, and client-focused excellence.",
+        "Dr. J Retnakumar, Chairman, brings over 25 years of experience in the insurance sector and is known for his positive demeanor and “can do” spirit. He served as Head of Oman Operations at New India Assurance Co. Ltd., leading it to become the top foreign insurance brand in Oman in 2009. An award winning leader, he has designed innovative insurance covers and safety campaigns in India and Oman. He is an Associate of the Insurance Institute of India and holds a CTP from AIMS, London. His visionary leadership continues to drive growth, innovation, and client focused excellence.",
       imageUrl: chairman,
     },
     {
       name: "Jacob Siby Madathil CMA",
       role: "Executive Director | Privity Insurance Brokers Pvt Ltd",
       description:
-        "Jacob Siby Madathil, CMA and founder of Madathil Financial Services, has over a decade of experience in insurance sector. With a strong background from J.P. Morgan & Chase and family business leadership, he is recognized for ethical practices, transparency, and client-first insurance solutions.",
+        "Jacob Siby Madathil, CMA, has over a decade of experience in the insurance sector. With a strong background from J.P. Morgan & Chase and leadership within the family business, he is recognized for ethical practices, transparency, and client first insurance solutions.",
       imageUrl: jacob,
     },
     {
@@ -46,7 +46,7 @@ export default function TeamSection() {
                     relative bg-white rounded-3xl shadow-lg
                     flex flex-col-reverse md:flex-row
                     items-center gap-6 w-full overflow-hidden
-                    md:col-span-2 max-w-7xl
+                    md:col-span-2 max-w-8xl
                   `}
                 >
                   {/* Content */}

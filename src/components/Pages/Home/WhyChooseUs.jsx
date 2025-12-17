@@ -15,13 +15,13 @@ const features = [
     icon: network,
   },
   {
-    title: "Seamless end-to-end claims support",
+    title: "Seamless end to end claims support",
     description: "Get your designs done quickly without delays in 24 hours",
     icon: endtoend,
   },
   {
     title:
-      "Operate solely on statutory brokerage — absolutely no hidden charges",
+      "Operate solely on statutory brokerage absolutely no hidden charges",
     description: "Get your designs done quickly without delays in 24 hours",
     icon: hidden,
   },

@@ -1,9 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { BlogCard } from "./BlogCard";
-import { ENDPOINTS } from "../../../config/api2";
+// ❌ remove this
+// import { ENDPOINTS } from "../../../config/api2";
 
-const BLOGS_API_URL = ENDPOINTS.GET_BLOGS();
+// ✅ import local JSON (adjust the path to where you put blogs.json)
+import blogsJson from "../../../data/blogs.json";
+
+// const BLOGS_API_URL = ENDPOINTS.GET_BLOGS();
 
 // breakpoints (matching Tailwind's lg: 1024px)
 const MOBILE_PAGE_SIZE = 3;
@@ -15,32 +19,23 @@ export function BlogListing({ onBlogClick }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-
-  // 🔥 NEW: responsive blogs-per-page
   const [blogsPerPage, setBlogsPerPage] = useState(MOBILE_PAGE_SIZE);
-
-  // 🔥 for featured slider
   const [currentFeaturedIndex, setCurrentFeaturedIndex] = useState(0);
-
-  // ref to scroll to top of blog cards when page changes
   const blogTopRef = useRef(null);
 
-  // 👉 detect screen width and set page size
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const updateBlogsPerPage = () => {
       const width = window.innerWidth;
       if (width >= 1024) {
-        // lg and above → desktop
         setBlogsPerPage(DESKTOP_PAGE_SIZE);
       } else {
-        // mobile / tablet
         setBlogsPerPage(MOBILE_PAGE_SIZE);
       }
     };
 
-    updateBlogsPerPage(); // initial
+    updateBlogsPerPage();
     window.addEventListener("resize", updateBlogsPerPage);
 
     return () => window.removeEventListener("resize", updateBlogsPerPage);
@@ -54,25 +49,18 @@ export function BlogListing({ onBlogClick }) {
     try {
       setLoading(true);
 
-      const response = await fetch(BLOGS_API_URL);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch blogs: ${response.statusText}`);
-      }
-
-      const data = await response.json();
+      // ✅ use local data instead of fetch
+      const data = blogsJson; // already an array
 
       const mappedBlogs = (data || []).map((post) => {
-        // Derive slug from the WordPress link
         const slug = post.link
           ? post.link.replace(/\/$/, "").split("/").pop()
           : "";
 
-        // post.categories from PHP is an array of objects: { id, name, slug }
         const categoryNames = Array.isArray(post.categories)
           ? post.categories.map((c) => c && c.name).filter(Boolean)
           : [];
 
-        // Primary category (prefer non-"Featured")
         const primaryCategory =
           categoryNames.find(
             (name) => name && name.toLowerCase() !== "featured"
@@ -80,7 +68,6 @@ export function BlogListing({ onBlogClick }) {
           categoryNames[0] ||
           "Uncategorized";
 
-        // reading_time is like "1 min read" → we only want the number
         const parsedReadTime = parseInt(post.reading_time, 10);
         const readTime = Number.isNaN(parsedReadTime) ? 1 : parsedReadTime;
 
@@ -91,10 +78,10 @@ export function BlogListing({ onBlogClick }) {
           excerpt: post.excerpt || "",
           link: post.link,
           image_url: post.featured_image,
-          categories: categoryNames, // array of category names (strings)
-          category: primaryCategory, // used on card pill (never "Featured" if another exists)
-          published_at: post.date, // "YYYY-MM-DD"
-          read_time: readTime, // number (minutes)
+          categories: categoryNames,
+          category: primaryCategory,
+          published_at: post.date,
+          read_time: readTime,
           slug,
           isFeatured: categoryNames.some(
             (name) => name && name.toLowerCase() === "featured"
@@ -102,13 +89,12 @@ export function BlogListing({ onBlogClick }) {
         };
       });
 
-      // Sort newest first (in case API is not sorted)
       mappedBlogs.sort(
         (a, b) => new Date(b.published_at) - new Date(a.published_at)
       );
 
       setBlogs(mappedBlogs);
-      setCurrentFeaturedIndex(0); // reset slider when blogs change
+      setCurrentFeaturedIndex(0);
     } catch (error) {
       console.error("Error loading blogs:", error);
     } finally {

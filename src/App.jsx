@@ -1,5 +1,5 @@
 // App.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,7 +24,7 @@ import LocationModal from "./components/Common/LocationModal";
 
 // blog imports
 import { BlogListing } from "./components/Pages/blog/BlogListing";
-import { BlogPost } from "./components/Pages/blog/BlogPost";
+import { BlogPost } from "./components/Pages/blog/BlogPost"; // uncommented - keep named import as in your codebase
 
 // Wrapper to handle blog list route + navigation to slug
 function BlogListingPage() {
@@ -51,21 +51,30 @@ function BlogPostPage() {
   return <BlogPost slug={slug} onBack={handleBack} />;
 }
 
-// App.jsx
 function App() {
   const [isEstimateOpen, setEstimateOpen] = useState(false);
   const [isLocationsOpen, setLocationsOpen] = useState(false);
+
+  // Listen for fallback global event dispatched by components that can't/weren't wired with props
+  // e.g. WhatWeOffer fallback: window.dispatchEvent(new CustomEvent('openEstimate'))
+  useEffect(() => {
+    const openHandler = () => setEstimateOpen(true);
+    window.addEventListener("openEstimate", openHandler);
+    return () => window.removeEventListener("openEstimate", openHandler);
+  }, []);
 
   return (
     <Router>
       <div className="min-h-screen">
         <Header />
 
+        {/* Sticky bar (mobile) — pass handler */}
         <StickyEstimateBar
           onOpenEstimate={() => setEstimateOpen(true)}
           onOpenLocations={() => setLocationsOpen(true)}
         />
 
+        {/* Modals (controlled at App level) */}
         <EstimateModal
           isOpen={isEstimateOpen}
           onClose={() => setEstimateOpen(false)}
@@ -75,13 +84,17 @@ function App() {
           onClose={() => setLocationsOpen(false)}
         />
 
+        {/* Main content area - pass explicit openEstimate prop to Home so children (WhatWeOffer) can call directly */}
         <div className="pt-16">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={<Home onOpenEstimate={() => setEstimateOpen(true)} />}
+            />
             <Route path="/test" element={<TestimonialsAndWhyChooseUs />} />
             <Route path="/contact" element={<ContactPage />} />
 
-            {/* ✅ Use the wrapper components here */}
+            {/* Blog routes */}
             <Route path="/blogs" element={<BlogListingPage />} />
             <Route path="/blogs/:slug" element={<BlogPostPage />} />
           </Routes>
