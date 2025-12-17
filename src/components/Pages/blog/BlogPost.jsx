@@ -8,13 +8,9 @@ import {
   Facebook,
   Linkedin,
 } from "lucide-react";
-// ❌ remove
-// import { ENDPOINTS } from "../../../config/api2";
+import { ENDPOINTS } from "../../../config/api2";
 
-// ✅ import local JSON (same file as above)
-import blogsJson from "../../../data/blogs.json";
-
-// const BLOGS_API_URL = ENDPOINTS.GET_BLOGS();
+const BLOGS_API_URL = ENDPOINTS.GET_BLOGS();
 
 export function BlogPost({ slug, onBack }) {
   const [blog, setBlog] = useState(null);
@@ -30,8 +26,12 @@ export function BlogPost({ slug, onBack }) {
     try {
       setLoading(true);
 
-      // ✅ local data
-      const data = blogsJson;
+      const response = await fetch(BLOGS_API_URL);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch blogs: ${response.statusText}`);
+      }
+
+      const data = await response.json();
 
       const mappedBlogs = (data || []).map((post) => {
         const slugFromLink = post.link
@@ -59,7 +59,8 @@ export function BlogPost({ slug, onBack }) {
           image_url: post.featured_image,
           categories: categoryNames,
           category: primaryCategory,
-          published_at: post.date,
+
+          published_at: post.date, // "YYYY-MM-DD"
           read_time: readTime,
           slug: slugFromLink,
         };
