@@ -69,9 +69,7 @@ const Header = ({ sticky = true }) => {
                   key={item.name}
                   href={item.path}
                   onClick={(e) => handleNavClick(e, item)}
-                  className={`text-[18px] tracking-wide transition hover:text-[--color-primary] ${
-                    isActive(item.path) ? "font-medium" : "font-light"
-                  }`}
+                  className={`text-[18px] tracking-wide transition hover:text-[--color-primary] `}
                 >
                   {item.name}
                 </a>
@@ -79,9 +77,7 @@ const Header = ({ sticky = true }) => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`text-[18px] tracking-wide transition hover:text-[--color-primary] ${
-                    isActive(item.path) ? "font-medium" : "font-light"
-                  }`}
+                  className={`text-[18px] tracking-wide transition hover:text-[--color-primary] `}
                 >
                   {item.name}
                 </Link>

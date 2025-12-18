@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import banner1 from "../../../assets/images/banner_1.jpeg";
+import banner1 from "../../../assets/images/banner_1.png";
 import banner2 from "../../../assets/images/banner_2.png";
 
-import mbanner1 from "../../../assets/images/mbanner_1.jpeg";
+import mbanner1 from "../../../assets/images/mbanner_1.png";
 import mbanner2 from "../../../assets/images/mbanner_2.png";
 
 export default function HeroBanner() {
-  const desktopBanners = [banner1, banner2];
-  const mobileBanners = [mbanner1, mbanner2];
+  const desktopBanners = [banner2, banner1];
+  const mobileBanners = [mbanner2, mbanner1];
 
   const [currentBanner, setCurrentBanner] = useState(0);
   const [isMobile, setIsMobile] = useState(false);

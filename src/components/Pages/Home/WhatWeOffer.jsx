@@ -127,7 +127,7 @@ const WhatWeOffer = ({ onOpenEstimate }) => {
         const index = cardsData.findIndex((c) => c.id === prev);
         return cardsData[(index + 1) % cardsData.length].id;
       });
-    }, 5000);
+    }, 3000);
   };
 
   const stopAutoPlay = () => {

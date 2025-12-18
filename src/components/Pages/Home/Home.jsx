@@ -19,7 +19,7 @@ import HowItWorksSection from "./HowItWorks";
 import FeaturesSection from "./FeaturesSection";
 import TestimonialsAndWhyChooseUsw from "./TestimonialsAndWhyChooseUsw";
 
-const Home = () => {
+const Home = ({ onOpenEstimate }) => {
   return (
     <main className="relative font-montserrat">
       {/* Top sections */}
@@ -27,7 +27,7 @@ const Home = () => {
         <HeroSection />
         {/* <InsuranceHero /> */}
         <StatsSection />
-        <WhatWeOffer />
+        <WhatWeOffer onOpenEstimate={onOpenEstimate} />
         <InsurancePartners />
       </div>
 
