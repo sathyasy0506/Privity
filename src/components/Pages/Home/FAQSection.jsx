@@ -3,6 +3,31 @@ import { Plus } from "lucide-react"; // We'll animate the Plus icon into X
 
 const faqs = [
   {
+    question: "What is Insurance?",
+    answer:
+      "Insurance allows individuals and businesses to transfer the financial burden of potential losses to an insurance company.",
+  },
+  {
+    question: "Why is Insurance Important?",
+    answer:
+      "Insurance can help prevent financial ruin in the face of unexpected events.",
+  },
+  {
+    question: "What are the forms of Health Insurance available?",
+    answer:
+      "Key sales metrics to track include conversion rates, average deal size, customer acquisition cost, sales cycle length, and customer lifetime value.",
+  },
+  {
+    question: "What kinds of Health Insurance plans are available?",
+    answer:
+      "Insurance can help prevent financial ruin in the face of unexpected events.",
+  },
+  {
+    question: "What is cashless facility?",
+    answer:
+      "Insurance can help prevent financial ruin in the face of unexpected events.",
+  },
+  {
     question: "Why is health insurance important?",
     answer:
       "Health insurance protects you from high medical costs and ensures access to timely, quality healthcare without financial stress.",
