@@ -2,6 +2,7 @@ import React from "react";
 import chairman from "../../../assets/images/chairman.png";
 import abhilash from "../../../assets/images/executive_director1.png";
 import jacob from "../../../assets/images/executive_director2.png";
+import bijo from "../../../assets/images/bijoBaby.png";
 
 export default function TeamSection() {
   const teamMembers = [
@@ -26,96 +27,75 @@ export default function TeamSection() {
         "With 18+ years of experience in the insurance industry and an MBA in Commerce, Abhilash Edayilliyam has earned nationwide recognition for service excellence. He is known for his strategic leadership, strong client relationships, and commitment to delivering reliable insurance support.",
       imageUrl: abhilash,
     },
+    {
+      name: "Bijo Baby",
+      role: "Executive Director | Privity Insurance Brokers Pvt Ltd",
+      description:
+        "With over 15 years of experience in the insurance industry, Bijo Baby served as Sales Manager at Star Health Insurance for 10 years. Recognized with 25 international awards and several domestic accolades, he is known for his leadership, client-focused approach, and expertise in delivering comprehensive insurance solutions.",
+      imageUrl: bijo,
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center md:p-8 md:-mt-10 pb-8 font-montserrat">
-      <div className="w-full max-w-10xl bg-[#F3E1E1] md:rounded-[50px] md:p-10 p-4">
-        <h1 className="text-[40px] leading-[56px] font-medium text-center mb-8 mt-8 font-montserrat">
+    <div className="bg-gradient-to-br from-white via-[#faf0f0] to-[#f8e4e4] font-montserrat py-10 px-4 md:px-8">
+      <div className="mx-auto w-full max-w-[1280px] rounded-[40px] bg-[#F3E1E1] p-6 md:p-10">
+        <h1 className="text-3xl md:text-5xl font-medium text-center mb-10 md:mb-12">
           Our <span className="text-[--color-primary]">Key Persons</span>
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-8 place-items-center">
+        <div className="grid grid-cols-1 gap-8">
           {teamMembers.map((member, index) => {
-            // First card → use the updated layout
             if (index === 0) {
               return (
                 <div
                   key={index}
-                  className={`
-                    relative bg-white rounded-3xl shadow-lg
-                    flex flex-col-reverse md:flex-row
-                    items-center gap-6 w-full overflow-hidden
-                    md:col-span-2 max-w-7xl
-                  `}
+                  className="bg-white rounded-[32px] shadow-xl overflow-hidden flex flex-col md:flex-row gap-6"
                 >
-                  {/* Content */}
-                  <div className="p-8 text-left flex-1">
-                    <h2 className="text-[30px] font-[500] text-gray-800 mb-2">
+                  <div className="flex-1 p-6 md:p-10">
+                    <h2 className="text-2xl md:text-4xl font-semibold text-gray-900 mb-3">
                       {member.name}
                     </h2>
-
-                    <p className="text-gray-500 text-[14px] font-[400] mb-4">
+                    <p className="text-sm md:text-base text-gray-500 mb-5">
                       {member.role}
                     </p>
-
-                    <p className="text-gray-600 text-[16px] font-[400] leading-relaxed text-justify">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed text-justify">
                       {member.description}
                     </p>
                   </div>
 
-                  {/* Image */}
-                  <div className="flex-shrink-0 mb-4 md:mb-0 flex justify-center w-full md:w-auto">
+                  <div className="flex justify-center items-center p-6 md:p-10">
                     <img
                       src={member.imageUrl}
                       alt={member.name}
-                      className="object-cover object-top  w-64 h-80"
+                      className="w-full max-w-[320px] rounded-3xl object-cover"
                     />
                   </div>
                 </div>
               );
             }
 
-            // Other cards → keep original layout
             return (
               <div
                 key={index}
-                className={`
-                  bg-white rounded-3xl shadow-lg
-                  flex flex-col-reverse md:flex-row
-                  w-full overflow-hidden
-                  max-w-3xl
-                `}
+                className="bg-white rounded-[32px] shadow-xl overflow-hidden flex flex-col md:flex-row gap-5"
               >
-                {/* Content */}
-                <div className="p-8 text-left md:flex-[7]">
-                  <h2 className="text-[30px] font-[500] text-gray-800 mb-2">
+                <div className="flex-1 p-6 md:p-8">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-3">
                     {member.name}
                   </h2>
-
-                  <p className="text-gray-500 text-[14px] font-[400] mb-4">
+                  <p className="text-sm md:text-base text-gray-500 mb-5">
                     {member.role}
                   </p>
-
-                  <p className="text-gray-600 text-[16px] font-[400] leading-relaxed text-justify">
+                  <p className="text-sm md:text-base text-gray-600 leading-relaxed text-justify">
                     {member.description}
                   </p>
                 </div>
 
-                {/* Image – 30%, bottom-right on desktop */}
-                <div
-                  className={`
-    flex justify-center md:flex md:flex-[3]
-    items-center md:items-end md:justify-end w-full
-  `}
-                >
+                <div className="flex justify-center items-center p-6 md:p-8">
                   <img
                     src={member.imageUrl}
                     alt={member.name}
-                    className={`
-                      object-cover object-top
-                      w-40 h-52 md:w-48 md:h-60
-                    `}
+                    className="w-full max-w-[260px] md:max-w-[300px] rounded-3xl object-cover"
                   />
                 </div>
               </div>
